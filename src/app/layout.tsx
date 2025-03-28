@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 
+import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import { Navbar } from "@/components/general/navbar";
@@ -33,6 +34,7 @@ export default function RootLayout({
                         <div id="stars4"></div>
                     </div>
                 </ThemeProvider>
+                <Analytics />
                 <SpeedInsights />
             </body>
         </html>
