@@ -1,0 +1,147 @@
+import { Icons } from "@/components/icons";
+
+export const resume = {
+    name: "Ali Kehel",
+    initials: "AK",
+    url: "https://alikehel.dev/",
+    location: "Egypt",
+    locationLink: "https://www.google.com/maps/place",
+    description: "I'm a Software Engineer. I build web applications with TypeScript.",
+    avatarUrl: "/me.jpg",
+    skills: [
+        {
+            name: "JavaScript",
+            description: "",
+            logoUrl: "/skills/javascript.svg",
+        },
+        {
+            name: "TypeScript",
+            description: "",
+            logoUrl: "/skills/typescript.svg",
+        },
+        {
+            name: "Node.JS",
+            description: ".",
+            logoUrl: "/skills/nodejs.svg",
+        },
+        {
+            name: "React.JS",
+            description: "",
+            logoUrl: "/skills/reactjs.svg",
+        },
+    ],
+    contact: {
+        email: "ali.kehel.27.2@gmail.com",
+        social: [
+            {
+                name: "GitHub",
+                url: "https://github.com/alikehel",
+                icon: Icons.github,
+                navbar: true,
+            },
+            {
+                name: "LinkedIn",
+                url: "https://www.linkedin.com/in/alikehel/",
+                icon: Icons.linkedin,
+                navbar: true,
+            },
+            {
+                name: "Email",
+                url: "mailto: ali.kehel.27.2@gmail.com",
+                icon: Icons.email,
+                navbar: true,
+            },
+            {
+                name: "Resume",
+                url: "https://bucket.alikehel.dev/Ali_Kehel_Resume_Without_Number.pdf",
+                icon: Icons.fileText,
+                navbar: true,
+            },
+        ],
+    },
+    education: [
+        {
+            University: "Benha University",
+            Faculty: "Faculty of Computer and Artificial Intelligence",
+            href: "https://fci.bu.edu.eg/",
+            start: "2019",
+            end: "2023",
+            gpa: "3.50",
+            location: "Benha, Egypt",
+            logoUrl: "/edu/bfcai.png",
+        },
+    ],
+    work: [
+        {
+            company: "OVARC",
+            href: "https://www.linkedin.com/company/ovarc",
+            badges: [],
+            location: "Maadi, Cairo, Egypt",
+            title: "Software Engineer",
+            logoUrl: "/work/ovarc.jpg",
+            start: "Jan 2025",
+            end: "Present",
+            description: "",
+        },
+        {
+            company: "Naslook",
+            href: "",
+            badges: [],
+            location: "Remotely",
+            title: "Software Engineer (Freelance)",
+            logoUrl: "/work/naslook.png",
+            start: "Oct 2024",
+            end: "Dec 2024",
+            description: "",
+        },
+        {
+            company: "Al Barq",
+            href: "",
+            badges: [],
+            location: "Remotely",
+            title: "Software Engineer (Freelance)",
+            logoUrl: "/work/albarq.png",
+            start: "Oct 2023",
+            end: "Sep 2024",
+            description: "",
+        },
+    ],
+    projects: [
+        {
+            title: "Cloud Education",
+            href: "https://github.com/alikehel/bfcai-graduation-project-cloud-education-api",
+            date: "2023",
+            active: false,
+            description: "A Complete Education System on the cloud that aims to be a replacement for the traditional offline school.",
+            technologies: ["TypeScript", "Node.js", "Express.js", "PostgreSQL"],
+            links: [
+                {
+                    type: "Github",
+                    href: "https://github.com/alikehel/bfcai-graduation-project-cloud-education-api",
+                    icon: <Icons.github className="size-4" />,
+                },
+            ],
+            logoUrl: "/projects/cloudeducation/logo.png",
+            images: [],
+            video: "",
+        },
+        {
+            title: "Active Courses",
+            href: "https://github.com/alikehel/activecourses",
+            date: "2023",
+            active: false,
+            description: "The website for the Active Courses discord server.",
+            technologies: ["TypeScript", "MDX", "React.js", "Docusaurus"],
+            links: [
+                {
+                    type: "Github",
+                    href: "https://github.com/alikehel/activecourses",
+                    icon: <Icons.github className="size-4" />,
+                },
+            ],
+            logoUrl: "/projects/activecourses/logo.png",
+            images: [],
+            video: "",
+        },
+    ],
+} as const;
