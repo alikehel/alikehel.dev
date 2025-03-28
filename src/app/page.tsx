@@ -28,7 +28,7 @@ export default function Home() {
                     </SparklesText>
                     <p className="text-2xl">{resume.description}</p>
                 </div>
-                <div className="relative w-[223] h-[170]">
+                <div className="relative w-[223px] h-[170px]">
                     <Image
                         className="animate-morph border-2 border-opacity-50"
                         src={resume.avatarUrl}
