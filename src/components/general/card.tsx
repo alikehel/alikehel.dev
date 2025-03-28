@@ -57,6 +57,8 @@ export function Card({ className, logoUrl, title, href, description, links, date
                 )}
                 target="_blank"
                 href={href || ""}
+                aria-label={`${title} ${description ? `- ${description}` : ""}`}
+                title={`${title} ${description ? `- ${description}` : ""}`}
             >
                 {cardContent()}
             </Link>

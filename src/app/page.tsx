@@ -21,14 +21,14 @@ export default function Home() {
                                 { text: "Hi,", className: "font-bold text-4xl" },
                                 { text: "I'm", className: "font-bold text-4xl" },
                                 ...resume.name.split(" ").map((v) => {
-                                    return { text: v, className: "dark:text-red-900 font-bold text-4xl" };
+                                    return { text: v, className: "dark:text-red-500 font-bold text-4xl" };
                                 }),
                             ]}
                         />
                     </SparklesText>
                     <p className="text-2xl">{resume.description}</p>
                 </div>
-                <div className="relative w-[223px] h-[170px]">
+                <div className="relative h-[170px] w-[223px]">
                     <Image
                         className="animate-morph border-2 border-opacity-50"
                         src={resume.avatarUrl}
@@ -146,7 +146,7 @@ export default function Home() {
                 </SparklesText>
                 <p className="text-2xl">
                     Feel free to contact me at{" "}
-                    <Link className="underline dark:text-red-900" href={`${resume.contact.social[1].url}`}>
+                    <Link className="underline dark:text-red-500" href={`${resume.contact.social[1].url}`}>
                         LinkedIn
                     </Link>
                     . I&apos;m always open to new opportunities and collaborations.
