@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     openGraph: {
         images: [{ url: "/me.jpg" }],
     },
+    icons: ["/favicon.svg"],
 };
 
 export default function RootLayout({
