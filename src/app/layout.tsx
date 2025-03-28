@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 import { Navbar } from "@/components/general/navbar";
 import { ThemeProvider } from "@/components/providers/theme-provider";
-import "@/styles/globals.css";
 import { resume } from "@/data/resume";
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
     title: resume.name,
@@ -31,6 +33,7 @@ export default function RootLayout({
                         <div id="stars4"></div>
                     </div>
                 </ThemeProvider>
+                <SpeedInsights />
             </body>
         </html>
     );
