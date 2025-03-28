@@ -26,6 +26,8 @@ export default function RootLayout({
             <body className={`antialiased`}>
                 <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
                     {children}
+                    <Analytics />
+                    <SpeedInsights />
                     <Navbar />
                     <div className="bg-animation -z-10 overflow-hidden">
                         <div id="stars"></div>
@@ -34,8 +36,6 @@ export default function RootLayout({
                         <div id="stars4"></div>
                     </div>
                 </ThemeProvider>
-                <Analytics />
-                <SpeedInsights />
             </body>
         </html>
     );
