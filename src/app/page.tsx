@@ -28,14 +28,18 @@ export default function Home() {
                     </SparklesText>
                     <p className="text-2xl">{resume.description}</p>
                 </div>
-                <Image
-                    className="animate-morph border-2 border-opacity-50"
-                    src={resume.avatarUrl}
-                    alt={resume.name + "'s Photo"}
-                    width={180}
-                    height={37}
-                    priority
-                />
+                <div className="relative w-[172] h-[140]">
+                    <Image
+                        className="animate-morph border-2 border-opacity-50"
+                        src={resume.avatarUrl}
+                        alt={resume.name + "'s Photo"}
+                        // width={140}
+                        // height={140}
+                        priority
+                        layout="fill"
+                        objectFit="cover"
+                    />
+                </div>
             </section>
             {/* Skills */}
             <section className="flex flex-col gap-8">
