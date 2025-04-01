@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
@@ -36,6 +37,7 @@ export default function RootLayout({
                         <div id="stars3"></div>
                         <div id="stars4"></div>
                     </div>
+                    <Image src="/jinx-monkey.png" alt="Jinx Monkey" width={150} height={150} className="fixed bottom-5 right-5 -z-50" />
                 </ThemeProvider>
             </body>
         </html>
