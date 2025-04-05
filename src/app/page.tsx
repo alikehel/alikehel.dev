@@ -10,7 +10,7 @@ import { resume } from "@/data/resume";
 
 export default function Home() {
     return (
-        <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-16 px-6 py-16 md:pb-44 md:pt-36">
+        <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-16 px-6 pt-16 pb-32 md:pb-44 md:pt-36">
             {/* Hero */}
             <section className="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row">
                 <div className="flex flex-col gap-3">

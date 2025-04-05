@@ -46,9 +46,9 @@ export default function RootLayout({
                     <Image
                         src="/jinx-monkey.png"
                         alt="Jinx Monkey"
-                        width={150}
-                        height={150}
-                        className="fixed bottom-5 right-5 -z-50"
+                        width={100}
+                        height={100}
+                        className="fixed bottom-5 left-5 -z-50 md:right-5 md:left-auto opacity-80"
                     />
                 </ThemeProvider>
             </body>
