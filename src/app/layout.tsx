@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: resume.name,
     description: resume.name + "'s personal website",
     openGraph: {
-        images: [{ url: "/me.jpg" }],
+        images: [{ url: "/banner.jpg" }],
     },
     icons: ["/favicon.svg"],
 };
