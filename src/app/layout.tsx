@@ -31,13 +31,25 @@ export default function RootLayout({
                     <Analytics />
                     <SpeedInsights />
                     <Navbar />
-                    <div className="bg-animation -z-10 overflow-hidden opacity-70">
+                    <div className="bg-animation -z-10 overflow-hidden opacity-70 w-3/12">
                         <div id="stars"></div>
                         <div id="stars2"></div>
                         <div id="stars3"></div>
                         <div id="stars4"></div>
                     </div>
-                    <div className="bg-animation -z-10 rotate-180 overflow-hidden opacity-70">
+                    <div className="bg-animation -z-10 overflow-hidden opacity-70 left-1/4 w-3/12">
+                        <div id="stars"></div>
+                        <div id="stars2"></div>
+                        <div id="stars3"></div>
+                        <div id="stars4"></div>
+                    </div>
+                    <div className="bg-animation -z-10 overflow-hidden opacity-70 left-2/4 w-3/12">
+                        <div id="stars"></div>
+                        <div id="stars2"></div>
+                        <div id="stars3"></div>
+                        <div id="stars4"></div>
+                    </div>
+                    <div className="bg-animation -z-10 overflow-hidden opacity-70 left-3/4 w-3/12">
                         <div id="stars"></div>
                         <div id="stars2"></div>
                         <div id="stars3"></div>
