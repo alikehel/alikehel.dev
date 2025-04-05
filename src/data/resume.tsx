@@ -3,6 +3,7 @@ import { Icons } from "@/components/icons";
 export const resume = {
     name: "Ali Kehel",
     initials: "AK",
+    title: "Software Engineer",
     url: "https://alikehel.dev/",
     location: "Egypt",
     locationLink: "https://www.google.com/maps/place",

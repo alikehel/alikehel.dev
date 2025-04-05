@@ -10,7 +10,7 @@ import { resume } from "@/data/resume";
 import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-    title: resume.name,
+    title: resume.name + " – " + resume.title,
     description: resume.name + "'s personal website",
     openGraph: {
         images: [{ url: "/banner.jpg" }],
@@ -37,13 +37,19 @@ export default function RootLayout({
                         <div id="stars3"></div>
                         <div id="stars4"></div>
                     </div>
-                    <div className="bg-animation -z-10 overflow-hidden rotate-180">
+                    <div className="bg-animation -z-10 rotate-180 overflow-hidden">
                         <div id="stars"></div>
                         <div id="stars2"></div>
                         <div id="stars3"></div>
                         <div id="stars4"></div>
                     </div>
-                    <Image src="/jinx-monkey.png" alt="Jinx Monkey" width={150} height={150} className="fixed bottom-5 right-5 -z-50" />
+                    <Image
+                        src="/jinx-monkey.png"
+                        alt="Jinx Monkey"
+                        width={150}
+                        height={150}
+                        className="fixed bottom-5 right-5 -z-50"
+                    />
                 </ThemeProvider>
             </body>
         </html>
