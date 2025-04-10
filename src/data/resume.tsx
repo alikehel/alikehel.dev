@@ -4,7 +4,7 @@ export const resume = {
     name: "Ali Kehel",
     initials: "AK",
     title: "Software Engineer",
-    url: "https://alikehel.dev/",
+    url: "https://www.alikehel.dev/",
     location: "Egypt",
     locationLink: "https://www.google.com/maps/place",
     description: "I'm a Software Engineer. I build web applications with TypeScript.",
