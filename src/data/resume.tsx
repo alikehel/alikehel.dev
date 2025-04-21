@@ -157,7 +157,7 @@ export const resume = {
                     icon: <Icons.github className="size-4" />,
                 },
             ],
-            logoUrl: "/projects/activecourses/logo.png",
+            logoUrl: "/projects/activecourses/logo.jpg",
             images: [],
             video: "",
         },
