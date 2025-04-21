@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { Icons } from "@/components/icons";
 
 export const resume = {
@@ -7,7 +9,35 @@ export const resume = {
     url: "https://www.alikehel.dev/",
     location: "Egypt",
     locationLink: "https://www.google.com/maps/place",
-    description: "I'm a Software Engineer. I build web applications with TypeScript.",
+    description: [
+        "I'm a Software Engineer. I build web applications with TypeScript. I also love watching ",
+        <Image
+            key={"killua"}
+            className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 border-[#30588C] bg-white"
+            src={"/other/hxh.jpg"}
+            alt={"Killua Zoldyck"}
+            width={140}
+            height={140}
+            priority
+        />,
+        <span key={"anime"} className="text-[#30588C]">
+            anime
+        </span>,
+        " and playing ",
+        <Image
+            key={"killua"}
+            className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 border-[#30588C] bg-white"
+            src={"/other/r6s.jpg"}
+            alt={"Killua Zoldyck"}
+            width={140}
+            height={140}
+            priority
+        />,
+        <span key={"anime"} className="text-[#30588C]">
+            games
+        </span>,
+        " in my free time.",
+    ],
     avatarUrl: "/me.jpg",
     skills: [
         {
