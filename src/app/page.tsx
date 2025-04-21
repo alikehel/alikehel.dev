@@ -13,7 +13,7 @@ export default function Home() {
         <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-16 px-6 pb-32 pt-16 md:pb-44 md:pt-36">
             {/* Hero */}
             <section className="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row">
-                <div className="flex flex-col gap-3">
+                <div className="flex flex-col gap-3 md:max-w-[75%]">
                     <SparklesText sparklesCount={5} className="text-4xl font-bold">
                         <TypewriterEffect
                             className="m-[-3px] text-left text-4xl font-bold"
