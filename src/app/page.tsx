@@ -62,7 +62,7 @@ export default function Home() {
             </section>
             {/* Work Experience */}
             <section className="flex flex-col gap-8">
-                <h2 className="text-2xl font-bold">Work Experience</h2>
+                <h2 className="text-2xl font-bold">Experience</h2>
                 <div className="flex flex-col gap-2">
                     {resume.work.map((job) => (
                         <Card
