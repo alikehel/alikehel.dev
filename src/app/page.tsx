@@ -30,7 +30,7 @@ export default function Home() {
                 </div>
                 <div className="relative h-[170px] w-[223px]">
                     <Image
-                        className="h-full w-full animate-morph border-2 border-opacity-50 object-none"
+                        className="h-full w-full animate-morph border-2 border-opacity-50 object-contain"
                         src={resume.avatarUrl}
                         alt={resume.name + "'s Photo"}
                         width={140}
