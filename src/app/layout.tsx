@@ -24,32 +24,32 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={`antialiased`}>
                 <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
                     {children}
                     <Analytics />
                     <SpeedInsights />
                     <Navbar />
-                    <div className="bg-animation -z-10 overflow-hidden opacity-70 w-3/12">
+                    <div className="bg-animation -z-10 w-3/12 overflow-hidden opacity-70">
                         <div id="stars"></div>
                         <div id="stars2"></div>
                         <div id="stars3"></div>
                         <div id="stars4"></div>
                     </div>
-                    <div className="bg-animation -z-10 overflow-hidden opacity-70 left-1/4 w-3/12">
+                    <div className="bg-animation left-1/4 -z-10 w-3/12 overflow-hidden opacity-70">
                         <div id="stars"></div>
                         <div id="stars2"></div>
                         <div id="stars3"></div>
                         <div id="stars4"></div>
                     </div>
-                    <div className="bg-animation -z-10 overflow-hidden opacity-70 left-2/4 w-3/12">
+                    <div className="bg-animation left-2/4 -z-10 w-3/12 overflow-hidden opacity-70">
                         <div id="stars"></div>
                         <div id="stars2"></div>
                         <div id="stars3"></div>
                         <div id="stars4"></div>
                     </div>
-                    <div className="bg-animation -z-10 overflow-hidden opacity-70 left-3/4 w-3/12">
+                    <div className="bg-animation left-3/4 -z-10 w-3/12 overflow-hidden opacity-70">
                         <div id="stars"></div>
                         <div id="stars2"></div>
                         <div id="stars3"></div>
@@ -60,7 +60,7 @@ export default function RootLayout({
                         alt="Jinx Monkey"
                         width={100}
                         height={100}
-                        className="md:fixed relative bottom-5 left-5 -z-50 md:right-5 md:left-auto opacity-80"
+                        className="relative bottom-5 left-5 -z-50 opacity-80 md:fixed md:left-auto md:right-5"
                     />
                 </ThemeProvider>
             </body>
