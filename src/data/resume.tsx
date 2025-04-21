@@ -71,6 +71,16 @@ export const resume = {
             location: "Benha, Egypt",
             logoUrl: "/edu/bfcai.png",
         },
+        {
+            University: "STEM School",
+            Faculty: "High School for Boys",
+            href: "https://www.stemegypt.net/",
+            start: "2016",
+            end: "2018",
+            gpa: "",
+            location: "6th of October, Egypt",
+            logoUrl: "/edu/stem.png",
+        },
     ],
     work: [
         {
@@ -113,7 +123,8 @@ export const resume = {
             href: "https://github.com/alikehel/bfcai-graduation-project-cloud-education-api",
             date: "2023",
             active: false,
-            description: "A Complete Education System on the cloud that aims to be a replacement for the traditional offline school.",
+            description:
+                "A Complete Education System on the cloud that aims to be a replacement for the traditional offline school.",
             technologies: ["TypeScript", "Node.js", "Express.js", "PostgreSQL"],
             links: [
                 {
