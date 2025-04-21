@@ -33,7 +33,7 @@ export const resume = {
             height={140}
             priority
         />,
-        <span key={"anime"} className="dark:text-[#30588C]">
+        <span key={"games"} className="dark:text-[#30588C]">
             games
         </span>,
         " in my free time.",
