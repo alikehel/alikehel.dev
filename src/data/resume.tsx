@@ -15,7 +15,7 @@ export const resume = {
             key={"killua"}
             className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 border-[#30588C] bg-white"
             src={"/other/hxh.jpg"}
-            alt={"Killua Zoldyck"}
+            alt={"Killua Zoldyck from Hunter x Hunter"}
             width={140}
             height={140}
             priority
@@ -28,7 +28,7 @@ export const resume = {
             key={"killua"}
             className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 border-[#30588C] bg-white"
             src={"/other/r6s.jpg"}
-            alt={"Killua Zoldyck"}
+            alt={"Solis from Rainbow Six Siege"}
             width={140}
             height={140}
             priority
