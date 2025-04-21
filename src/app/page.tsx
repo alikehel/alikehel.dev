@@ -10,7 +10,7 @@ import { resume } from "@/data/resume";
 
 export default function Home() {
     return (
-        <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-16 px-6 pt-16 pb-32 md:pb-44 md:pt-36">
+        <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-16 px-6 pb-32 pt-16 md:pb-44 md:pt-36">
             {/* Hero */}
             <section className="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row">
                 <div className="flex flex-col gap-3">
@@ -30,14 +30,12 @@ export default function Home() {
                 </div>
                 <div className="relative h-[170px] w-[223px]">
                     <Image
-                        className="animate-morph border-2 border-opacity-50"
+                        className="h-full w-full animate-morph border-2 border-opacity-50 object-none"
                         src={resume.avatarUrl}
                         alt={resume.name + "'s Photo"}
-                        // width={140}
-                        // height={140}
+                        width={140}
+                        height={140}
                         priority
-                        layout="fill"
-                        objectFit="cover"
                     />
                 </div>
             </section>
