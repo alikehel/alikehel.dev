@@ -5,6 +5,7 @@ const nextConfig: NextConfig = {
         loader: "custom",
         loaderFile: "./image-loader.ts",
     },
+    output: "standalone",
 };
 
 export default nextConfig;
