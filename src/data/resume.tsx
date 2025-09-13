@@ -13,7 +13,7 @@ export const resume = {
         "I'm a Software Engineer. I build web applications with TypeScript. I also love watching ",
         <Image
             key={"killua"}
-            className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 dark:border-[#30588C] bg-white"
+            className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 bg-white dark:border-[#30588C]"
             src={"/other/hxh.jpg"}
             alt={"Killua Zoldyck from Hunter x Hunter"}
             width={140}
@@ -26,7 +26,7 @@ export const resume = {
         " and playing ",
         <Image
             key={"solis"}
-            className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 dark:border-[#30588C] bg-white"
+            className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 bg-white dark:border-[#30588C]"
             src={"/other/r6s.jpg"}
             alt={"Solis from Rainbow Six Siege"}
             width={140}

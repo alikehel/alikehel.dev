@@ -31,12 +31,12 @@ export const FollowerPointerCard = ({
         };
 
         updateRect();
-        window.addEventListener('scroll', updateRect);
-        window.addEventListener('resize', updateRect);
+        window.addEventListener("scroll", updateRect);
+        window.addEventListener("resize", updateRect);
 
         return () => {
-            window.removeEventListener('scroll', updateRect);
-            window.removeEventListener('resize', updateRect);
+            window.removeEventListener("scroll", updateRect);
+            window.removeEventListener("resize", updateRect);
         };
     }, []);
 
