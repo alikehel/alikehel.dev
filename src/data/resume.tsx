@@ -84,7 +84,7 @@ export const resume = {
             },
             {
                 name: "Resume",
-                url: "https://bucket.alikehel.dev/Ali_Kehel_Resume_Without_Number.pdf",
+                url: "https://bucket.alikehel.dev/Ali_Kehel_Resume.pdf",
                 icon: Icons.fileText,
                 navbar: true,
             },
