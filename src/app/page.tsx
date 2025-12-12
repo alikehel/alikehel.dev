@@ -144,7 +144,10 @@ export default function Home() {
                 </SparklesText>
                 <p className="text-2xl">
                     Feel free to contact me at{" "}
-                    <Link className="underline dark:text-[#30588C]" href={`${resume.contact.social[1].url}`}>
+                    <Link 
+                        className="underline dark:text-[#30588C]" 
+                        href={resume.contact.social.find(social => social.name === "LinkedIn")?.url || "#"}
+                    >
                         LinkedIn
                     </Link>
                     . I&apos;m always open to new opportunities and collaborations.

@@ -32,28 +32,28 @@ export default function RootLayout({
                     <SpeedInsights />
                     <Navbar />
                     <div className="bg-animation -z-10 w-3/12 overflow-hidden opacity-70">
-                        <div id="stars"></div>
-                        <div id="stars2"></div>
-                        <div id="stars3"></div>
-                        <div id="stars4"></div>
+                        <div id="stars-1"></div>
+                        <div id="stars2-1"></div>
+                        <div id="stars3-1"></div>
+                        <div id="stars4-1"></div>
                     </div>
                     <div className="bg-animation left-1/4 -z-10 w-3/12 overflow-hidden opacity-70">
-                        <div id="stars"></div>
-                        <div id="stars2"></div>
-                        <div id="stars3"></div>
-                        <div id="stars4"></div>
+                        <div id="stars-2"></div>
+                        <div id="stars2-2"></div>
+                        <div id="stars3-2"></div>
+                        <div id="stars4-2"></div>
                     </div>
                     <div className="bg-animation left-2/4 -z-10 w-3/12 overflow-hidden opacity-70">
-                        <div id="stars"></div>
-                        <div id="stars2"></div>
-                        <div id="stars3"></div>
-                        <div id="stars4"></div>
+                        <div id="stars-3"></div>
+                        <div id="stars2-3"></div>
+                        <div id="stars3-3"></div>
+                        <div id="stars4-3"></div>
                     </div>
                     <div className="bg-animation left-3/4 -z-10 w-3/12 overflow-hidden opacity-70">
-                        <div id="stars"></div>
-                        <div id="stars2"></div>
-                        <div id="stars3"></div>
-                        <div id="stars4"></div>
+                        <div id="stars-4"></div>
+                        <div id="stars2-4"></div>
+                        <div id="stars3-4"></div>
+                        <div id="stars4-4"></div>
                     </div>
                     <Image
                         src="/jinx-monkey.png"
