@@ -10,18 +10,21 @@ interface DockItem {
 export function FloatingDock({ items }: { items: DockItem[] }) {
     return (
         <>
-            <div className="mx-auto hidden h-16 items-end gap-4 rounded-2xl bg-neutral-900 px-4 pb-3 md:flex">
+            <div className="mx-auto hidden h-16 items-end rounded-2xl bg-neutral-900 px-2 pb-3 md:flex">
                 {items.map((item) => (
+                    // The link's padding fills the space between icons, so the hover never drops while moving across
                     <a
                         key={item.title}
                         href={item.href}
                         aria-label={item.title}
-                        className="dock-item group relative flex items-center justify-center rounded-full bg-neutral-800"
+                        className="dock-item group flex h-full items-end px-2"
                     >
-                        <span className="pointer-events-none absolute -top-8 left-1/2 w-fit -translate-x-1/2 translate-y-2.5 rounded-md border border-neutral-900 bg-neutral-800 px-2 py-0.5 text-xs whitespace-pre text-white opacity-0 transition duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
-                            {item.title}
+                        <span className="dock-circle relative flex items-center justify-center rounded-full bg-neutral-800">
+                            <span className="pointer-events-none absolute -top-8 left-1/2 w-fit -translate-x-1/2 translate-y-2.5 rounded-md border border-neutral-900 bg-neutral-800 px-2 py-0.5 text-xs whitespace-pre text-white opacity-0 transition duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                                {item.title}
+                            </span>
+                            <span className="dock-icon flex items-center justify-center">{item.icon}</span>
                         </span>
-                        <span className="dock-icon flex items-center justify-center">{item.icon}</span>
                     </a>
                 ))}
             </div>

@@ -4,7 +4,6 @@ import { Asset, HeadContent, Scripts, createRootRoute, useTags } from "@tanstack
 
 import { Navbar } from "@/components/general/navbar";
 import { resume } from "@/data/resume";
-import { cn } from "@/lib/utils";
 import appCss from "@/styles/globals.css?inline";
 import appCssUrl from "@/styles/globals.css?url";
 
@@ -23,7 +22,6 @@ const personJsonLd = {
         .map((item) => item.url),
 };
 
-const starColumns = ["left-0", "left-1/4", "left-2/4", "left-3/4"];
 const starLayers = ["stars", "stars2", "stars3", "stars4"];
 
 export const Route = createRootRoute({
@@ -74,17 +72,11 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
             <body className="antialiased">
                 {children}
                 <Navbar />
-                {starColumns.map((column) => (
-                    <div
-                        key={column}
-                        aria-hidden="true"
-                        className={cn("bg-animation -z-10 w-3/12 overflow-hidden opacity-70", column)}
-                    >
-                        {starLayers.map((layer) => (
-                            <div key={layer} className={layer} />
-                        ))}
-                    </div>
-                ))}
+                <div aria-hidden="true" className="bg-animation -z-10 overflow-hidden opacity-70">
+                    {starLayers.map((layer) => (
+                        <div key={layer} className={layer} />
+                    ))}
+                </div>
                 <img
                     src="/jinx-monkey.webp"
                     alt="Jinx Monkey"
