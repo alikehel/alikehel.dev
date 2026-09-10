@@ -1,26 +1,23 @@
 {
-    "prettier.enable": true,
-    "biome.enabled": false,
-    "eslint.enable": true,
     "editor.formatOnSave": true,
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.defaultFormatter": "oxc.oxc-vscode",
     "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": "explicit",
+        "source.fixAll.oxc": "explicit",
         "source.organizeImports": "never"
     },
+    "oxc.fmt.disableNestedConfig": true,
     "files.associations": {
         "*.css": "tailwindcss"
     },
-    "typescript.tsdk": "node_modules/typescript/lib",
+    "typescript.experimental.useTsgo": true,
     "workbench.editor.customLabels.patterns": {
-        "**/app/**/page.tsx": "${dirname} - Page",
-        "**/app/**/layout.tsx": "${dirname} - Layout",
+        "**/routes/**/*.tsx": "${filename} - Route",
         "**/components/**/index.tsx": "${dirname} - Component"
     },
     "[typescript]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "oxc.oxc-vscode"
     },
     "[typescriptreact]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "oxc.oxc-vscode"
     }
 }
