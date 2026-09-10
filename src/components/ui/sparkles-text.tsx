@@ -1,163 +1,71 @@
-"use client";
-
-import { CSSProperties, ReactElement, useEffect, useState } from "react";
-
-import { motion } from "framer-motion";
-
-import { cn } from "@/lib/utils";
-
-interface Sparkle {
-    id: string;
-    x: string;
-    y: string;
-    color: string;
-    delay: number;
-    scale: number;
-    lifespan: number;
-}
+import type { CSSProperties, ReactNode } from "react";
 
 interface SparklesTextProps {
-    /**
-     * @default <div />
-     * @type ReactElement
-     * @description
-     * The component to be rendered as the text
-     * */
-    as?: ReactElement;
-
-    /**
-     * @default ""
-     * @type string
-     * @description
-     * The className of the text
-     */
+    children?: ReactNode;
     className?: string;
-
-    // /**
-    //  * @required
-    //  * @type string
-    //  * @description
-    //  * The text to be displayed
-    //  * */
-    // text: string;
-
-    /**
-     * @default 10
-     * @type number
-     * @description
-     * The count of sparkles
-     * */
     sparklesCount?: number;
-
-    /**
-     * @default "{first: '#9E7AFF', second: '#FE8BBB'}"
-     * @type string
-     * @description
-     * The colors of the sparkles
-     * */
+    /** Seed for the sparkle layout, so each instance looks different but renders the same every time */
+    seed?: number;
     colors?: {
         first: string;
         second: string;
     };
-
-    /**
-     * @default <div />
-     * @type ReactElement
-     * @description
-     * The component to be rendered as the text
-     * */
-    children?: ReactElement;
 }
 
-const SparklesText: React.FC<SparklesTextProps> = ({
-    // text,
-    colors = { first: "#A63F8A", second: "#732959" },
-    className,
+const defaultColors = { first: "#A63F8A", second: "#732959" };
+
+// mulberry32
+function createRandom(seed: number) {
+    let state = seed;
+    return () => {
+        state = (state + 0x6d2b79f5) | 0;
+        let t = Math.imul(state ^ (state >>> 15), 1 | state);
+        t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
+        return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
+    };
+}
+
+function createSparkles(count: number, seed: number, colors: SparklesTextProps["colors"] & object) {
+    const random = createRandom(seed);
+    const percent = () => `${(random() * 100).toFixed(1)}%`;
+
+    return Array.from({ length: count }, () => ({
+        style: {
+            "--sparkle-color": random() > 0.5 ? colors.first : colors.second,
+            "--x1": percent(),
+            "--y1": percent(),
+            "--x2": percent(),
+            "--y2": percent(),
+            "--x3": percent(),
+            "--y3": percent(),
+            "--hop": `${(3 + random()) * 3}s`,
+        } as CSSProperties,
+        iconStyle: {
+            "--scale": (0.3 + random()).toFixed(2),
+            animationDelay: `${(random() * 2).toFixed(2)}s`,
+        } as CSSProperties,
+    }));
+}
+
+export default function SparklesText({
     children,
+    className,
     sparklesCount = 10,
-    ...props
-}) => {
-    const [sparkles, setSparkles] = useState<Sparkle[]>([]);
-
-    useEffect(() => {
-        const generateStar = (): Sparkle => {
-            const starX = `${Math.random() * 100}%`;
-            const starY = `${Math.random() * 100}%`;
-            const color = Math.random() > 0.5 ? colors.first : colors.second;
-            const delay = Math.random() * 2;
-            const scale = Math.random() * 1 + 0.3;
-            const lifespan = Math.random() + 3;
-            const id = `${starX}-${starY}-${Date.now()}`;
-            return { id, x: starX, y: starY, color, delay, scale, lifespan };
-        };
-
-        const initializeStars = () => {
-            const newSparkles = Array.from({ length: sparklesCount }, generateStar);
-            setSparkles(newSparkles);
-        };
-
-        const updateStars = () => {
-            setSparkles((currentSparkles) =>
-                currentSparkles.map((star) => {
-                    if (star.lifespan <= 0) {
-                        return generateStar();
-                    } else {
-                        return { ...star, lifespan: star.lifespan - 0.1 };
-                    }
-                }),
-            );
-        };
-
-        initializeStars();
-        const interval = setInterval(updateStars, 100);
-
-        return () => clearInterval(interval);
-    }, [colors.first, colors.second]);
+    seed = 1,
+    colors = defaultColors,
+}: SparklesTextProps) {
+    const sparkles = createSparkles(sparklesCount, seed, colors);
 
     return (
-        <div
-            className={cn("text-6xl font-bold", className)}
-            {...props}
-            style={
-                {
-                    "--sparkles-first-color": `${colors.first}`,
-                    "--sparkles-second-color": `${colors.second}`,
-                } as CSSProperties
-            }
-        >
-            <span className="relative inline-block">
-                {sparkles.map((sparkle) => (
-                    <Sparkle key={sparkle.id} {...sparkle} />
+        <div className={className}>
+            <div className="relative inline-block">
+                {sparkles.map((sparkle, index) => (
+                    <span key={index} aria-hidden="true" className="sparkle" style={sparkle.style}>
+                        <span style={sparkle.iconStyle} />
+                    </span>
                 ))}
-                {/* <strong>{text}</strong> */}
-                <strong>{children}</strong>
-            </span>
+                {children}
+            </div>
         </div>
     );
-};
-
-const Sparkle: React.FC<Sparkle> = ({ id, x, y, color, delay, scale }) => {
-    return (
-        <motion.svg
-            key={id}
-            className="pointer-events-none absolute z-20"
-            initial={{ opacity: 0, left: x, top: y }}
-            animate={{
-                opacity: [0, 1, 0],
-                scale: [0, scale, 0],
-                rotate: [75, 120, 150],
-            }}
-            transition={{ duration: 0.8, repeat: Infinity, delay }}
-            width="21"
-            height="21"
-            viewBox="0 0 21 21"
-        >
-            <path
-                d="M9.82531 0.843845C10.0553 0.215178 10.9446 0.215178 11.1746 0.843845L11.8618 2.72026C12.4006 4.19229 12.3916 6.39157 13.5 7.5C14.6084 8.60843 16.8077 8.59935 18.2797 9.13822L20.1561 9.82534C20.7858 10.0553 20.7858 10.9447 20.1561 11.1747L18.2797 11.8618C16.8077 12.4007 14.6084 12.3916 13.5 13.5C12.3916 14.6084 12.4006 16.8077 11.8618 18.2798L11.1746 20.1562C10.9446 20.7858 10.0553 20.7858 9.82531 20.1562L9.13819 18.2798C8.59932 16.8077 8.60843 14.6084 7.5 13.5C6.39157 12.3916 4.19225 12.4007 2.72023 11.8618L0.843814 11.1747C0.215148 10.9447 0.215148 10.0553 0.843814 9.82534L2.72023 9.13822C4.19225 8.59935 6.39157 8.60843 7.5 7.5C8.60843 6.39157 8.59932 4.19229 9.13819 2.72026L9.82531 0.843845Z"
-                fill={color}
-            />
-        </motion.svg>
-    );
-};
-
-export default SparklesText;
+}

@@ -1,192 +1,69 @@
-"use client";
+import type { ReactNode } from "react";
 
-/**
- * Note: Use position fixed according to your needs
- * Desktop navbar is better positioned at the bottom
- * Mobile navbar is better positioned at bottom right.
- **/
-import Link from "next/link";
-import { useRef, useState } from "react";
+interface DockItem {
+    title: string;
+    icon: ReactNode;
+    href: string;
+}
 
-import { IconLayoutNavbarCollapse } from "@tabler/icons-react";
-import { AnimatePresence, MotionValue, motion, useMotionValue, useSpring, useTransform } from "framer-motion";
-
-import { cn } from "@/lib/utils";
-
-export const FloatingDock = ({
-    items,
-    desktopClassName,
-    mobileClassName,
-}: {
-    items: { title: string; icon: React.ReactNode; href: string }[];
-    desktopClassName?: string;
-    mobileClassName?: string;
-}) => {
+// The magnify effect, tooltips, and mobile menu are CSS-only (see `.dock-*` in globals.css)
+export function FloatingDock({ items }: { items: DockItem[] }) {
     return (
         <>
-            <FloatingDockDesktop items={items} className={desktopClassName} />
-            <FloatingDockMobile items={items} className={mobileClassName} />
-        </>
-    );
-};
-
-const FloatingDockMobile = ({
-    items,
-    className,
-}: {
-    items: { title: string; icon: React.ReactNode; href: string }[];
-    className?: string;
-}) => {
-    const [open, setOpen] = useState(false);
-    return (
-        <div className={cn("relative block md:hidden", className)}>
-            <AnimatePresence>
-                {open && (
-                    <motion.div layoutId="nav" className="absolute inset-x-0 bottom-full mb-2 flex flex-col gap-2">
-                        {items.map((item, idx) => (
-                            <motion.div
-                                key={item.title}
-                                initial={{ opacity: 0, y: 10 }}
-                                animate={{
-                                    opacity: 1,
-                                    y: 0,
-                                }}
-                                exit={{
-                                    opacity: 0,
-                                    y: 10,
-                                    transition: {
-                                        delay: idx * 0.05,
-                                    },
-                                }}
-                                transition={{ delay: (items.length - 1 - idx) * 0.05 }}
-                            >
-                                <Link
-                                    href={item.href}
-                                    key={item.title}
-                                    className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-900"
-                                    aria-label={item.title}
-                                    title={item.title}
-                                >
-                                    <div className="h-4 w-4">{item.icon}</div>
-                                </Link>
-                            </motion.div>
-                        ))}
-                    </motion.div>
-                )}
-            </AnimatePresence>
-            <button
-                type="button"
-                title="Toggle navigation menu"
-                onClick={() => setOpen(!open)}
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-gray-50 dark:bg-neutral-800"
-            >
-                <IconLayoutNavbarCollapse className="h-5 w-5 text-neutral-500 dark:text-neutral-400" />
-            </button>
-        </div>
-    );
-};
-
-const FloatingDockDesktop = ({
-    items,
-    className,
-}: {
-    items: { title: string; icon: React.ReactNode; href: string }[];
-    className?: string;
-}) => {
-    const mouseX = useMotionValue(Infinity);
-    return (
-        <motion.div
-            onMouseMove={(e: React.MouseEvent<HTMLDivElement>) => mouseX.set(e.pageX)}
-            onMouseLeave={() => mouseX.set(Infinity)}
-            className={cn(
-                "mx-auto hidden h-16 items-end gap-4 rounded-2xl bg-gray-50 px-4 pb-3 dark:bg-neutral-900 md:flex",
-                className,
-            )}
-        >
-            {items.map((item) => (
-                <IconContainer mouseX={mouseX} key={item.title} {...item} />
-            ))}
-        </motion.div>
-    );
-};
-
-function IconContainer({
-    mouseX,
-    title,
-    icon,
-    href,
-}: {
-    mouseX: MotionValue;
-    title: string;
-    icon: React.ReactNode;
-    href: string;
-}) {
-    const ref = useRef<HTMLDivElement>(null);
-
-    const distance = useTransform(mouseX, (val) => {
-        const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
-
-        return val - bounds.x - bounds.width / 2;
-    });
-
-    const widthTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-    const heightTransform = useTransform(distance, [-150, 0, 150], [40, 80, 40]);
-
-    const widthTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-    const heightTransformIcon = useTransform(distance, [-150, 0, 150], [20, 40, 20]);
-
-    const width = useSpring(widthTransform, {
-        mass: 0.1,
-        stiffness: 150,
-        damping: 12,
-    });
-    const height = useSpring(heightTransform, {
-        mass: 0.1,
-        stiffness: 150,
-        damping: 12,
-    });
-
-    const widthIcon = useSpring(widthTransformIcon, {
-        mass: 0.1,
-        stiffness: 150,
-        damping: 12,
-    });
-    const heightIcon = useSpring(heightTransformIcon, {
-        mass: 0.1,
-        stiffness: 150,
-        damping: 12,
-    });
-
-    const [hovered, setHovered] = useState(false);
-
-    return (
-        <Link href={href} aria-label={title} title={title}>
-            <motion.div
-                ref={ref}
-                style={{ width, height }}
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-                className="relative flex aspect-square items-center justify-center rounded-full bg-gray-200 dark:bg-neutral-800"
-            >
-                <AnimatePresence>
-                    {hovered && (
-                        <motion.div
-                            initial={{ opacity: 0, y: 10, x: "-50%" }}
-                            animate={{ opacity: 1, y: 0, x: "-50%" }}
-                            exit={{ opacity: 0, y: 2, x: "-50%" }}
-                            className="absolute -top-8 left-1/2 w-fit -translate-x-1/2 whitespace-pre rounded-md border border-gray-200 bg-gray-100 px-2 py-0.5 text-xs text-neutral-700 dark:border-neutral-900 dark:bg-neutral-800 dark:text-white"
+            <div className="mx-auto hidden h-16 items-end gap-4 rounded-2xl bg-neutral-900 px-4 pb-3 md:flex">
+                {items.map((item) => (
+                    <a
+                        key={item.title}
+                        href={item.href}
+                        aria-label={item.title}
+                        className="dock-item group relative flex items-center justify-center rounded-full bg-neutral-800"
+                    >
+                        <span className="pointer-events-none absolute -top-8 left-1/2 w-fit -translate-x-1/2 translate-y-2.5 rounded-md border border-neutral-900 bg-neutral-800 px-2 py-0.5 text-xs whitespace-pre text-white opacity-0 transition duration-200 group-hover:translate-y-0 group-hover:opacity-100 group-focus-visible:translate-y-0 group-focus-visible:opacity-100">
+                            {item.title}
+                        </span>
+                        <span className="dock-icon flex items-center justify-center">{item.icon}</span>
+                    </a>
+                ))}
+            </div>
+            <div className="relative block md:hidden">
+                <div id="dock-menu" popover="auto" className="dock-menu">
+                    {items.map((item, index) => (
+                        <a
+                            key={item.title}
+                            href={item.href}
+                            aria-label={item.title}
+                            title={item.title}
+                            className="dock-menu-item flex h-10 w-10 items-center justify-center rounded-full bg-neutral-900"
+                            style={{ transitionDelay: `${(items.length - 1 - index) * 0.05}s` }}
                         >
-                            {title}
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-                <motion.div
-                    style={{ width: widthIcon, height: heightIcon }}
-                    className="flex items-center justify-center"
+                            <span className="h-4 w-4">{item.icon}</span>
+                        </a>
+                    ))}
+                </div>
+                <button
+                    type="button"
+                    popoverTarget="dock-menu"
+                    aria-label="Toggle navigation menu"
+                    title="Toggle navigation menu"
+                    className="flex h-10 w-10 items-center justify-center rounded-full bg-neutral-800"
                 >
-                    {icon}
-                </motion.div>
-            </motion.div>
-        </Link>
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        aria-hidden="true"
+                        className="h-5 w-5 text-neutral-400"
+                    >
+                        <path d="M4 18v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2" />
+                        <path d="M4 9h16" />
+                        <path d="M10 16l2 -2l2 2" />
+                    </svg>
+                </button>
+            </div>
+        </>
     );
 }

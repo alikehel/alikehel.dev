@@ -1,63 +1,59 @@
-import Image from "next/image";
-
 import { Icons } from "@/components/icons";
 
 export const resume = {
     name: "Ali Kehel",
     initials: "AK",
     title: "Software Engineer",
-    url: "https://www.alikehel.dev/",
+    url: "https://alikehel.dev/",
     location: "Egypt",
     locationLink: "https://www.google.com/maps/place",
+    /** Plain-text summary used for the meta description */
+    summary:
+        "Ali Kehel is a Software Engineer from Egypt who builds web applications with TypeScript, React, and Node.js.",
     description: [
         "I'm a Software Engineer. I build web applications with TypeScript. I also love watching ",
-        <Image
+        <img
             key={"killua"}
-            className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 bg-white dark:border-[#30588C]"
+            className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 border-[#4177BD] bg-white object-cover"
             src={"/other/hxh.jpg"}
-            alt={"Killua Zoldyck from Hunter x Hunter"}
-            width={140}
-            height={140}
-            priority
+            // Decorative: the word next to it says what it is. Alt text here would end up in search snippets.
+            alt=""
+            width={64}
+            height={64}
         />,
-        <span key={"anime"} className="dark:text-[#30588C]">
+        <span key={"anime"} className="text-[#4177BD]">
             anime
         </span>,
         " and playing ",
-        <Image
+        <img
             key={"solis"}
-            className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 bg-white dark:border-[#30588C]"
+            className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 border-[#4177BD] bg-white object-cover"
             src={"/other/r6s.jpg"}
-            alt={"Solis from Rainbow Six Siege"}
-            width={140}
-            height={140}
-            priority
+            alt=""
+            width={64}
+            height={64}
         />,
-        <span key={"games"} className="dark:text-[#30588C]">
+        <span key={"games"} className="text-[#4177BD]">
             games
         </span>,
         " in my free time.",
     ],
-    avatarUrl: "/me.jpg",
+    avatarUrl: "/me.webp",
     skills: [
         {
             name: "JavaScript",
-            description: "",
             logoUrl: "/skills/javascript.svg",
         },
         {
             name: "TypeScript",
-            description: "",
             logoUrl: "/skills/typescript.svg",
         },
         {
             name: "Node.JS",
-            description: ".",
             logoUrl: "/skills/nodejs.svg",
         },
         {
             name: "React.JS",
-            description: "",
             logoUrl: "/skills/reactjs.svg",
         },
     ],
@@ -68,25 +64,21 @@ export const resume = {
                 name: "GitHub",
                 url: "https://github.com/alikehel",
                 icon: Icons.github,
-                navbar: true,
             },
             {
                 name: "LinkedIn",
                 url: "https://www.linkedin.com/in/alikehel/",
                 icon: Icons.linkedin,
-                navbar: true,
             },
             {
                 name: "Email",
-                url: "mailto: ali.kehel.27.2@gmail.com",
+                url: "mailto:ali.kehel.27.2@gmail.com",
                 icon: Icons.email,
-                navbar: true,
             },
             {
                 name: "Resume",
                 url: "https://bucket.alikehel.dev/Ali_Kehel_Resume.pdf",
                 icon: Icons.fileText,
-                navbar: true,
             },
         ],
     },
@@ -99,7 +91,7 @@ export const resume = {
             end: "2023",
             gpa: "3.50",
             location: "Benha, Egypt",
-            logoUrl: "/edu/bfcai.png",
+            logoUrl: "/edu/bfcai.webp",
         },
         {
             University: "STEM School",
@@ -109,42 +101,36 @@ export const resume = {
             end: "2018",
             gpa: "",
             location: "6th of October, Egypt",
-            logoUrl: "/edu/stem.png",
+            logoUrl: "/edu/stem.webp",
         },
     ],
     work: [
         {
             company: "OVARC",
             href: "https://www.linkedin.com/company/ovarc",
-            badges: [],
             location: "Maadi, Cairo, Egypt",
             title: "Software Engineer",
-            logoUrl: "/work/ovarc.jpg",
+            logoUrl: "/work/ovarc.webp",
             start: "Jan 2025",
             end: "Present",
-            description: "",
         },
         {
             company: "Naslook",
             href: "",
-            badges: [],
             location: "Remotely",
             title: "Software Engineer (Freelance)",
-            logoUrl: "/work/naslook.png",
+            logoUrl: "/work/naslook.webp",
             start: "Oct 2024",
             end: "Dec 2024",
-            description: "",
         },
         {
             company: "Al Barq",
             href: "",
-            badges: [],
             location: "Remotely",
             title: "Software Engineer (Freelance)",
-            logoUrl: "/work/albarq.png",
+            logoUrl: "/work/albarq.webp",
             start: "Oct 2023",
             end: "Sep 2024",
-            description: "",
         },
     ],
     projects: [
@@ -152,7 +138,6 @@ export const resume = {
             title: "Disworse",
             href: "https://github.com/activecourses/disworse",
             date: "2024",
-            active: false,
             description: "Discord clone frontend with monorepo architecture for typescript fullstack typesafety.",
             technologies: [
                 "TypeScript",
@@ -162,53 +147,24 @@ export const resume = {
                 "Tanstack Form",
                 "Tailwind CSS",
             ],
-            links: [
-                {
-                    type: "Github",
-                    href: "https://github.com/activecourses/disworse",
-                    icon: <Icons.github className="size-4" />,
-                },
-            ],
-            logoUrl: "/projects/disworse/logo.png",
-            images: [],
-            video: "",
+            logoUrl: "/projects/disworse/logo.webp",
         },
         {
             title: "Active Courses",
             href: "https://github.com/alikehel/activecourses",
             date: "2023",
-            active: false,
-            description: "The website for Active Courses discord server (Biggest egyption tech community on discord).",
+            description: "The website for Active Courses discord server (Biggest Egyptian tech community on Discord).",
             technologies: ["TypeScript", "MDX", "React.js", "Docusaurus"],
-            links: [
-                {
-                    type: "Github",
-                    href: "https://github.com/alikehel/activecourses",
-                    icon: <Icons.github className="size-4" />,
-                },
-            ],
-            logoUrl: "/projects/activecourses/logo.jpg",
-            images: [],
-            video: "",
+            logoUrl: "/projects/activecourses/logo.webp",
         },
         {
             title: "Cloud Education (Graduation Project)",
             href: "https://github.com/alikehel/bfcai-graduation-project-cloud-education-api",
             date: "2023",
-            active: false,
             description:
                 "A Complete Education System on the cloud that aims to be a replacement for the traditional offline school.",
             technologies: ["TypeScript", "Node.js", "Express.js", "PostgreSQL"],
-            links: [
-                {
-                    type: "Github",
-                    href: "https://github.com/alikehel/bfcai-graduation-project-cloud-education-api",
-                    icon: <Icons.github className="size-4" />,
-                },
-            ],
-            logoUrl: "/projects/cloudeducation/logo.png",
-            images: [],
-            video: "",
+            logoUrl: "/projects/cloudeducation/logo.webp",
         },
     ],
 } as const;
