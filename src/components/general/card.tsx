@@ -10,9 +10,9 @@ interface CardProps {
 }
 
 export function Card({ className, logoUrl, title, href, description, date }: CardProps) {
-    const label = description ? `${title} - ${description}` : title;
+    // Padding stays constant (offset by the negative margin) so hovering only changes the background, not the layout
     const classes = cn(
-        "flex flex-row items-center justify-between rounded-xl py-2 transition-all duration-200 ease-in-out hover:bg-[#70707050] hover:px-4",
+        "-mx-4 flex flex-row items-center justify-between rounded-xl px-4 py-2 transition-colors duration-200 ease-in-out hover:bg-[#70707050]",
         className,
     );
 
@@ -41,14 +41,7 @@ export function Card({ className, logoUrl, title, href, description, date }: Car
 
     if (href) {
         return (
-            <a
-                className={classes}
-                target="_blank"
-                rel="noopener noreferrer"
-                href={href}
-                aria-label={label}
-                title={label}
-            >
+            <a className={classes} target="_blank" rel="noopener noreferrer" href={href}>
                 {content}
             </a>
         );
