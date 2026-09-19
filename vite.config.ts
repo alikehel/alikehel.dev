@@ -1,10 +1,18 @@
 import { defineConfig, lazyPlugins } from "vite-plus";
 
 import { cloudflare } from "@cloudflare/vite-plugin";
+import mdx from "@mdx-js/rollup";
+import rehypeShiki from "@shikijs/rehype";
 import tailwindcss from "@tailwindcss/vite";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import react from "@vitejs/plugin-react";
 import { env } from "node:process";
+import rehypeSlug from "rehype-slug";
+import remarkFrontmatter from "remark-frontmatter";
+import remarkGfm from "remark-gfm";
+import remarkMdxFrontmatter from "remark-mdx-frontmatter";
+
+const siteUrl = "https://alikehel.dev";
 
 export default defineConfig({
     staged: {
@@ -168,7 +176,7 @@ export default defineConfig({
                 },
             },
             {
-                // TanStack Router file-based routes use names like `__root.tsx`
+                // TanStack Router file-based routes use names like `__root.tsx` and `$slug.tsx`
                 files: ["src/routes/**"],
                 jsPlugins: ["eslint-plugin-check-file"],
                 rules: {
@@ -235,8 +243,21 @@ export default defineConfig({
     },
     plugins: lazyPlugins(() => [
         cloudflare({ viteEnvironment: { name: "ssr" } }),
+        {
+            enforce: "pre",
+            ...mdx({
+                remarkPlugins: [remarkFrontmatter, [remarkMdxFrontmatter, { name: "frontmatter" }], remarkGfm],
+                // Code blocks are highlighted at build time, so no highlighter ships to the browser
+                rehypePlugins: [rehypeSlug, [rehypeShiki, { theme: "github-dark-default" }]],
+            }),
+        },
         tailwindcss(),
-        tanstackStart({ prerender: { enabled: true } }),
+        tanstackStart({
+            // Every page becomes static HTML at build time. Pages are found by crawling links from "/".
+            prerender: { enabled: true, autoSubfolderIndex: false },
+            pages: [{ path: "/rss.xml", sitemap: { exclude: true } }],
+            sitemap: { enabled: true, host: siteUrl },
+        }),
         react(),
     ]),
 });

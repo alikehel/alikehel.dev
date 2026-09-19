@@ -40,8 +40,10 @@ export function Card({ className, logoUrl, title, href, description, date }: Car
     );
 
     if (href) {
+        // Links to other sites open in a new tab; links within the site stay in this one
+        const external = /^https?:/.test(href);
         return (
-            <a className={classes} target="_blank" rel="noopener noreferrer" href={href}>
+            <a className={classes} href={href} {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}>
                 {content}
             </a>
         );

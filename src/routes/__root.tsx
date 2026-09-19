@@ -50,7 +50,7 @@ export const Route = createRootRoute({
             // In production the CSS is inlined below, which saves a render-blocking request
             ...(import.meta.env.DEV ? [{ rel: "stylesheet", href: appCssUrl }] : []),
             { rel: "icon", href: "/favicon.ico" },
-            { rel: "canonical", href: resume.url },
+            { rel: "alternate", type: "application/rss+xml", title: `${resume.name}'s blog`, href: "/rss.xml" },
         ],
         styles: import.meta.env.DEV ? [] : [{ children: appCss }],
         scripts: [{ type: "application/ld+json", children: JSON.stringify(personJsonLd) }],
