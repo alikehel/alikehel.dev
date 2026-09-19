@@ -11,7 +11,7 @@ pnpm dev
 
 The dev server runs at https://alikehel.localhost through [portless](https://github.com/vercel-labs/portless). Run `PORTLESS=0 pnpm dev` to skip it.
 
-Content lives in `src/data/resume.tsx`.
+Home page content lives in `src/data/resume.tsx`. Blog posts are MDX files in `content/blog/` (the file name is the URL slug) with `title`, `description` and `date` in the frontmatter; add `draft: true` to keep a post out of production. The `/uses` page is `content/uses.mdx`.
 
 ## Scripts
 

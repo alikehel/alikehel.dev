@@ -4,8 +4,11 @@ import { Card } from "@/components/general/card";
 import SparklesText from "@/components/ui/sparkles-text";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { resume } from "@/data/resume";
+import { formatDate, posts } from "@/lib/content";
+import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
+    head: () => pageHead({ path: "/", title: `${resume.name} | ${resume.title}`, description: resume.summary }),
     component: Home,
 });
 
@@ -113,6 +116,26 @@ function Home() {
                     ))}
                 </div>
             </section>
+            {/* Writing */}
+            {posts.length > 0 && (
+                <section className="flex flex-col gap-8">
+                    <h2 className="text-2xl font-bold">Writing</h2>
+                    <div className="flex flex-col gap-2">
+                        {posts.slice(0, 3).map((post) => (
+                            <Card
+                                key={post.slug}
+                                title={post.title}
+                                description={post.description}
+                                href={`/blog/${post.slug}`}
+                                date={formatDate(post.date)}
+                            />
+                        ))}
+                    </div>
+                    <a href="/blog" className="w-fit text-[#4177BD] underline">
+                        All posts
+                    </a>
+                </section>
+            )}
             {/* Contact */}
             <section className="flex flex-col gap-8 text-center">
                 <SparklesText sparklesCount={5} seed={2} className="text-6xl font-bold">

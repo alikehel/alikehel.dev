@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 @import "./animated-stars.css";
 
 /* Dark-only site: <html class="dark"> enables the dark: variants */

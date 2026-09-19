@@ -1,4 +1,4 @@
-import { House } from "lucide-react";
+import { House, NotebookPen, Wrench } from "lucide-react";
 
 import { FloatingDock } from "@/components/ui/floating-dock";
 import { resume } from "@/data/resume";
@@ -11,6 +11,8 @@ export function Navbar() {
             <FloatingDock
                 items={[
                     { title: "Home", icon: <House className={iconClassName} />, href: "/" },
+                    { title: "Blog", icon: <NotebookPen className={iconClassName} />, href: "/blog" },
+                    { title: "Uses", icon: <Wrench className={iconClassName} />, href: "/uses" },
                     ...resume.contact.social.map((item) => ({
                         title: item.name,
                         icon: item.icon({ className: iconClassName }),

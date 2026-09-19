@@ -1,0 +1,32 @@
+---
+title: "Rebuilding this site with TanStack Start"
+description: "How I moved my personal site from Next.js to TanStack Start on Cloudflare Workers, and got it to load with no JavaScript."
+date: "2026-09-19"
+---
+
+This site used to be a Next.js app, deployed through OpenNext on Cloudflare Workers. It worked, but it shipped a lot of JavaScript for what is basically one page of text and a few images. I rebuilt it with TanStack Start, and the home page now loads without any JavaScript at all.
+
+## What changed
+
+- **Framework:** TanStack Start with file-based routes, prerendered at build time.
+- **Tooling:** Vite+ for dev, build, lint and format, with TypeScript 7.
+- **Hosting:** the same Cloudflare Worker, deployed by Workers Builds on every push to `main`.
+- **Animations:** the typing effect, the sparkles and the dock's magnify effect are plain CSS now. They used to need Framer Motion.
+
+## No JavaScript in production
+
+TanStack Start can prerender routes at build time. With that on, the build writes static HTML for every page, and the CSS is inlined into it. The home page is one response of about 20 KB.
+
+```ts
+tanstackStart({
+    prerender: { enabled: true },
+});
+```
+
+The dev server still loads React for hot reload, so I only leave the `<Scripts />` tag out of the production build.
+
+## Results
+
+Lighthouse scores 100 in all four categories on mobile and desktop. Total blocking time is 0 ms, because there is nothing to block.
+
+This blog is written in MDX and rendered the same way, so this page is static HTML too.
