@@ -11,7 +11,11 @@ export const resume = {
     summary:
         "Ali Kehel is a Software Engineer from Egypt who builds web applications with TypeScript, React, and Node.js.",
     description: [
-        "I'm a Software Engineer. I build web applications with TypeScript. I also love watching ",
+        "I'm a ",
+        <strong key={"role"} className="font-bold text-[#4177BD]">
+            Software Engineer
+        </strong>,
+        ". I build web applications with TypeScript. I also love watching ",
         <img
             key={"killua"}
             className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 border-[#4177BD] bg-white object-cover"
