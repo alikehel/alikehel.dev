@@ -1,0 +1,276 @@
+/* The space theme: nebula, shooting stars, the 404 planet, Jinx's monkey and the page transitions. The motion only animates transform, translate, rotate,
+   scale and opacity, which the browser can run off the main thread. */
+
+@layer components {
+    /* A faint nebula glow behind the stars */
+    .bg-animation {
+        background:
+            radial-gradient(56rem 36rem at 90% 0%, rgb(65 119 189 / 0.13), transparent 70%),
+            radial-gradient(48rem 32rem at 0% 100%, rgb(206 147 216 / 0.09), transparent 70%);
+    }
+
+    /* Shooting stars: each one streaks across for about a second, then waits for its next turn */
+    .shooting-star {
+        position: absolute;
+        width: 8rem;
+        height: 1px;
+        border-radius: 9999px;
+        background: linear-gradient(to right, white, rgb(206 147 216 / 0.5) 30%, transparent);
+        rotate: -24deg;
+        opacity: 0;
+        animation: shoot 13s ease-out infinite;
+    }
+
+    /* The glowing head */
+    .shooting-star::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: -1px;
+        width: 3px;
+        height: 3px;
+        border-radius: 9999px;
+        background-color: white;
+        box-shadow: 0 0 6px 2px rgb(255 255 255 / 0.5);
+    }
+
+    .shooting-star:nth-of-type(1) {
+        top: 12%;
+        left: 70%;
+        animation-delay: 2s;
+    }
+
+    .shooting-star:nth-of-type(2) {
+        top: 38%;
+        left: 96%;
+        animation-duration: 19s;
+        animation-delay: 8s;
+    }
+
+    .shooting-star:nth-of-type(3) {
+        top: 3%;
+        left: 42%;
+        animation-duration: 29s;
+        animation-delay: 15s;
+    }
+
+    /* 404: the zero is a small planet with a ring */
+    .planet {
+        position: relative;
+        display: inline-block;
+        width: 0.74em;
+        height: 0.74em;
+        margin-inline: 0.2em;
+        animation: planet-float 3s ease-in-out infinite alternate;
+    }
+
+    .planet-body {
+        position: absolute;
+        inset: 0;
+        border-radius: 9999px;
+        background: radial-gradient(circle at 32% 30%, rgb(183 205 240), rgb(65 119 189) 42%, rgb(28 47 82) 80%);
+        box-shadow:
+            inset -0.06em -0.08em 0.14em rgb(0 0 0 / 0.55),
+            0 0 0.35em rgb(65 119 189 / 0.45);
+    }
+
+    .planet-ring {
+        position: absolute;
+        inset: 37% -30%;
+        border: 0.035em solid rgb(206 147 216 / 0.85);
+        border-radius: 50%;
+        rotate: -18deg;
+    }
+
+    /* The half of the ring that passes in front of the planet */
+    .planet-ring-front {
+        clip-path: inset(50% 0 0 0);
+    }
+
+    /* Jinx's monkey in the corner. It reacts when hovered, and floats around on the 404 page. */
+    .monkey {
+        position: fixed;
+        right: 1.25rem;
+        bottom: 1.25rem;
+        display: none;
+    }
+
+    .monkey img {
+        opacity: 0.8;
+        transform-origin: 50% 80%;
+        transition: opacity 200ms;
+    }
+
+    .monkey:hover img {
+        opacity: 1;
+        animation: monkey-giggle 0.35s ease-in-out 3;
+    }
+
+    .monkey-bubble {
+        position: absolute;
+        right: 60%;
+        bottom: calc(100% + 0.5rem);
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px;
+        background-color: #db2777;
+        color: white;
+        font-size: 0.875rem;
+        font-weight: 700;
+        white-space: nowrap;
+        pointer-events: none;
+        opacity: 0;
+        scale: 0.4;
+        transform-origin: 100% 100%;
+        transition:
+            opacity 150ms,
+            scale 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    /* The bubble's tail, pointing at the monkey */
+    .monkey-bubble::after {
+        content: "";
+        position: absolute;
+        top: 100%;
+        right: 0.75rem;
+        border-top: 6px solid #db2777;
+        border-right: 5px solid transparent;
+        border-left: 5px solid transparent;
+    }
+
+    .monkey:hover .monkey-bubble {
+        opacity: 1;
+        scale: 1;
+    }
+
+    @media (min-width: 48rem) {
+        .monkey {
+            display: block;
+        }
+
+        /* Lost in space */
+        .not-found ~ .monkey {
+            animation: monkey-drift 40s ease-in-out infinite;
+        }
+    }
+}
+
+/* Page transitions: pages glide into each other instead of flashing.
+   Chrome, Edge and Safari support this; other browsers switch pages as usual. */
+@media (prefers-reduced-motion: no-preference) {
+    @view-transition {
+        navigation: auto;
+    }
+}
+
+::view-transition-old(root) {
+    animation: page-out 180ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+::view-transition-new(root) {
+    animation: page-in 320ms cubic-bezier(0, 0, 0.2, 1) both;
+}
+
+/* The dock stays in place while the page changes */
+.dock {
+    view-transition-name: dock;
+}
+
+/* A post's title flies between the blog list and the post page. Both give it the same
+   view-transition-name (post-<slug>); this class tunes the flight. */
+.shared-title {
+    view-transition-class: shared-title;
+}
+
+::view-transition-group(*.shared-title) {
+    animation-duration: 450ms;
+    animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* A title with no partner on the other page (e.g. going from a post to the home page)
+   leaves or arrives with the rest of the page */
+::view-transition-old(*.shared-title):only-child {
+    animation: page-out 180ms cubic-bezier(0.4, 0, 1, 1) both;
+}
+
+::view-transition-new(*.shared-title):only-child {
+    animation: page-in 320ms cubic-bezier(0, 0, 0.2, 1) both;
+}
+
+@keyframes page-out {
+    to {
+        opacity: 0;
+        translate: 0 -0.5rem;
+    }
+}
+
+@keyframes page-in {
+    from {
+        opacity: 0;
+        translate: 0 0.75rem;
+    }
+}
+
+/* Moves along the star's own (tilted) axis, head first */
+@keyframes shoot {
+    0% {
+        opacity: 0;
+        transform: translateX(0);
+    }
+    1.5%,
+    3.5% {
+        opacity: 1;
+    }
+    6%,
+    100% {
+        opacity: 0;
+        transform: translateX(-40rem);
+    }
+}
+
+@keyframes planet-float {
+    from {
+        translate: 0 -0.03em;
+    }
+    to {
+        translate: 0 0.03em;
+    }
+}
+
+@keyframes monkey-giggle {
+    0%,
+    100% {
+        rotate: 0deg;
+        translate: 0 0;
+    }
+    25% {
+        rotate: -9deg;
+        translate: 0 -4px;
+    }
+    75% {
+        rotate: 9deg;
+        translate: 0 -4px;
+    }
+}
+
+@keyframes monkey-drift {
+    0% {
+        translate: 0 0;
+        rotate: 0deg;
+    }
+    25% {
+        translate: -24vw -30vh;
+        rotate: -70deg;
+    }
+    50% {
+        translate: -58vw -56vh;
+        rotate: -180deg;
+    }
+    75% {
+        translate: -34vw -14vh;
+        rotate: -280deg;
+    }
+    100% {
+        translate: 0 0;
+        rotate: -360deg;
+    }
+}

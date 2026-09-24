@@ -1,10 +1,10 @@
 ---
 title: "Rebuilding this site with TanStack Start"
-description: "How I moved my personal site from Next.js to TanStack Start on Cloudflare Workers, and got it to load with no JavaScript."
+description: "How I moved my personal site from Next.js to TanStack Start on Cloudflare Workers, and cut its JavaScript bundle to zero."
 date: "2026-09-19"
 ---
 
-This site used to be a Next.js app, deployed through OpenNext on Cloudflare Workers. It worked, but it shipped a lot of JavaScript for what is basically one page of text and a few images. I rebuilt it with TanStack Start, and the home page now loads without any JavaScript at all.
+This site used to be a Next.js app, deployed through OpenNext on Cloudflare Workers. It worked, but it shipped a lot of JavaScript for what is basically one page of text and a few images. I rebuilt it with TanStack Start, and the home page now ships no JavaScript bundle at all.
 
 ## What changed
 
@@ -15,7 +15,7 @@ This site used to be a Next.js app, deployed through OpenNext on Cloudflare Work
 
 ## No JavaScript in production
 
-TanStack Start can prerender routes at build time. With that on, the build writes static HTML for every page, and the CSS is inlined into it. The home page is one response of about 20 KB.
+TanStack Start can prerender routes at build time. With that on, the build writes static HTML for every page, and the CSS is inlined into it. The home page is one response of about 25 KB compressed.
 
 ```ts
 tanstackStart({
@@ -24,6 +24,22 @@ tanstackStart({
 ```
 
 The dev server still loads React for hot reload, so I only leave the `<Scripts />` tag out of the production build.
+
+## Space, still without JavaScript
+
+Later I gave the site a space theme, and every effect in it is CSS:
+
+- **Parallax stars:** the star layers are tied to the scroll position with `animation-timeline: scroll()`, so nearer stars move more than far ones as you scroll.
+- **Shooting stars:** keyframe animations that only move `transform` and `opacity`, which the browser can run off the main thread.
+- **Page transitions:** one rule makes pages glide into each other instead of flashing. A post's title has the same `view-transition-name` in the list and on the post page, so it flies into place.
+
+```css
+@view-transition {
+    navigation: auto;
+}
+```
+
+Browsers that don't support one of these just skip it, and the page works the same.
 
 ## Results
 

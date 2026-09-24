@@ -24,6 +24,28 @@ const personJsonLd = {
 
 const starLayers = ["stars", "stars2", "stars3", "stars4"];
 
+// A note for developers who read the page source. It's an HTML comment, so it never shows on the page.
+const sourceNote = String.raw`
+        .         *                 .            *
+                       .-"""-.
+          *           /       \         .
+                 ====(=========)====
+       .              \       /             *
+                       '-...-'      .
+          .                     *             .
+
+  Hi, curious developer!
+
+  This page is plain HTML and CSS, with no JavaScript bundle.
+  The drifting stars, the shooting stars and the page
+  transitions are all CSS animations.
+
+  Built with TanStack Start and Tailwind CSS, served from
+  Cloudflare Workers.
+
+  Want to talk shop? https://www.linkedin.com/in/alikehel/
+`;
+
 export const Route = createRootRoute({
     head: () => ({
         meta: [
@@ -70,22 +92,22 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
         <html lang="en" className="dark">
             <head>{import.meta.env.DEV ? <HeadContent /> : <StaticHeadContent />}</head>
             <body className="antialiased">
+                <div hidden dangerouslySetInnerHTML={{ __html: `<!--${sourceNote}-->` }} />
                 {children}
                 <Navbar />
                 <div aria-hidden="true" className="bg-animation -z-10 overflow-hidden opacity-70">
                     {starLayers.map((layer) => (
                         <div key={layer} className={layer} />
                     ))}
+                    <span className="shooting-star" />
+                    <span className="shooting-star" />
+                    <span className="shooting-star" />
                 </div>
-                <img
-                    src="/jinx-monkey.webp"
-                    alt="Jinx Monkey"
-                    width={100}
-                    height={78}
-                    loading="lazy"
-                    decoding="async"
-                    className="fixed right-5 bottom-5 -z-50 hidden opacity-80 md:block"
-                />
+                {/* Jinx's monkey, from Arcane. Hover it on a computer, or visit a page that doesn't exist. */}
+                <div aria-hidden="true" className="monkey">
+                    <span className="monkey-bubble">Get excited!</span>
+                    <img src="/jinx-monkey.webp" alt="" width={100} height={78} loading="lazy" decoding="async" />
+                </div>
                 {/* The page is static HTML and CSS. Client JS only loads in dev, for hot reload. */}
                 {import.meta.env.DEV && <Scripts />}
             </body>
@@ -95,11 +117,25 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 
 function NotFound() {
     return (
-        <main className="mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-4 px-6 text-center">
-            <h1 className="text-6xl font-bold">404</h1>
-            <p className="text-2xl opacity-80">This page doesn&apos;t exist.</p>
-            <a href="/" className="text-xl text-[#4177BD] underline">
-                Back home
+        // `not-found` also sends Jinx's monkey floating around the screen (see space.css)
+        <main className="not-found relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-4 px-6 text-center">
+            <h1 className="text-8xl font-bold sm:text-9xl">
+                <span className="sr-only">404</span>
+                {/* The zero is a planet */}
+                <span aria-hidden="true" className="inline-flex items-center">
+                    4
+                    <span className="planet">
+                        <span className="planet-ring" />
+                        <span className="planet-body" />
+                        <span className="planet-ring planet-ring-front" />
+                    </span>
+                    4
+                </span>
+            </h1>
+            <p className="text-3xl font-bold">Lost in space</p>
+            <p className="text-xl opacity-80">This page drifted off into deep space, or it never existed.</p>
+            <a href="/" className="link mt-2 text-xl text-[#4177BD]">
+                Back to Earth
             </a>
         </main>
     );

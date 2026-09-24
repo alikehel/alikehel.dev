@@ -42,6 +42,8 @@ function PostPage() {
         <Page
             back={{ href: "/blog", label: "Blog" }}
             title={title}
+            // Same name as the title in the post lists, so it flies into place
+            titleTransitionName={`post-${slug}`}
             description={description}
             meta={
                 <time dateTime={date} className="text-sm opacity-60">

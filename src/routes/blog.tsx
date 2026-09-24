@@ -28,9 +28,14 @@ function BlogPage() {
                     <li key={post.slug}>
                         <a
                             href={`/blog/${post.slug}`}
-                            className="group -mx-4 flex flex-col gap-1 rounded-xl px-4 py-3 transition-colors duration-200 hover:bg-[#70707050]"
+                            // Lifts a little on hover, like the cards on the home page
+                            className="group relative -mx-4 flex flex-col gap-1 rounded-xl px-4 py-3 transition duration-200 after:absolute after:inset-x-0 after:top-full after:h-1 hover:-translate-y-0.5 hover:bg-[#70707050]"
                         >
-                            <h2 className="text-2xl font-bold">
+                            {/* Same name as the post page's heading, so the title flies into place */}
+                            <h2
+                                className="shared-title w-fit text-2xl font-bold"
+                                style={{ viewTransitionName: `post-${post.slug}` }}
+                            >
                                 <TitleWithArrow title={post.title} className="h-5 w-5" />
                             </h2>
                             <p className="opacity-80">{post.description}</p>
@@ -41,7 +46,7 @@ function BlogPage() {
                     </li>
                 ))}
             </ul>
-            <a href="/rss.xml" className="inline-flex w-fit items-center gap-1.5 text-sm text-[#4177BD] underline">
+            <a href="/rss.xml" className="link inline-flex w-fit items-center gap-1.5 text-sm text-[#4177BD]">
                 <Rss aria-hidden="true" className="h-4 w-4" />
                 RSS feed
             </a>
