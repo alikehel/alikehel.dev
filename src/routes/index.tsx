@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { ArrowRight } from "lucide-react";
 
 import { Card } from "@/components/general/card";
 import SparklesText from "@/components/ui/sparkles-text";
@@ -131,8 +132,12 @@ function Home() {
                             />
                         ))}
                     </div>
-                    <a href="/blog" className="w-fit text-[#4177BD] underline">
+                    <a href="/blog" className="group inline-flex w-fit items-center gap-1.5 text-[#4177BD] underline">
                         All posts
+                        <ArrowRight
+                            aria-hidden="true"
+                            className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                        />
                     </a>
                 </section>
             )}

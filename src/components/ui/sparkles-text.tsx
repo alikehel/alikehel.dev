@@ -59,11 +59,13 @@ export default function SparklesText({
     return (
         <div className={className}>
             <div className="relative inline-block">
-                {sparkles.map((sparkle, index) => (
-                    <span key={index} aria-hidden="true" className="sparkle" style={sparkle.style}>
-                        <span style={sparkle.iconStyle} />
-                    </span>
-                ))}
+                <span aria-hidden="true" className="sparkles">
+                    {sparkles.map((sparkle, index) => (
+                        <span key={index} className="sparkle" style={sparkle.style}>
+                            <span style={sparkle.iconStyle} />
+                        </span>
+                    ))}
+                </span>
                 {children}
             </div>
         </div>

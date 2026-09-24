@@ -100,12 +100,21 @@
         animation: type-in 0.3s ease-in-out backwards;
     }
 
-    /* Sparkles: jump between three positions (--x1/--y1 ...) and twinkle at each one */
+    /* Sparkles: a layer a bit larger than the text. Each sparkle jumps between three positions
+       (--x1/--y1 ...) and twinkles at each one. The layer clips the sparkles' invisible boxes,
+       which would otherwise stick out past the text and widen the page on phones. */
+    .sparkles {
+        position: absolute;
+        inset: -0.75rem;
+        z-index: 20;
+        overflow: hidden;
+        pointer-events: none;
+    }
+
     .sparkle {
         position: absolute;
-        inset: 0;
-        z-index: 20;
-        pointer-events: none;
+        /* Room for the 21px star (and its twinkle scale) so it never lands outside the layer */
+        inset: 0.25rem 1.5rem 1.5rem 0.25rem;
         translate: var(--x1) var(--y1);
         animation: sparkle-hop var(--hop) steps(1, end) infinite;
     }
@@ -121,8 +130,7 @@
         animation: sparkle-twinkle 0.8s ease-in-out infinite;
     }
 
-    /* Dock: the hovered icon grows and its neighbors grow a bit less.
-       Sizes animate on the circle inside each link; the link itself spans the gaps. */
+    /* Dock: the site's navigation. Pages first, then a separator, then links out. */
     .dock-circle,
     .dock-icon {
         transition:
@@ -131,76 +139,91 @@
     }
 
     .dock-circle {
-        width: 2.5rem;
-        height: 2.5rem;
+        width: 2.25rem;
+        height: 2.25rem;
     }
 
     .dock-icon {
-        width: 1.25rem;
-        height: 1.25rem;
+        width: 1.125rem;
+        height: 1.125rem;
     }
 
-    .dock-item:hover .dock-circle {
-        width: 5rem;
-        height: 5rem;
-    }
-
-    .dock-item:hover .dock-icon {
-        width: 2.5rem;
-        height: 2.5rem;
-    }
-
-    .dock-item:hover + .dock-item .dock-circle,
-    .dock-item:has(+ .dock-item:hover) .dock-circle {
-        width: 3.75rem;
-        height: 3.75rem;
-    }
-
-    .dock-item:hover + .dock-item .dock-icon,
-    .dock-item:has(+ .dock-item:hover) .dock-icon {
-        width: 1.875rem;
-        height: 1.875rem;
-    }
-
-    .dock-item:hover + .dock-item + .dock-item .dock-circle,
-    .dock-item:has(+ .dock-item + .dock-item:hover) .dock-circle {
-        width: 3rem;
-        height: 3rem;
-    }
-
-    .dock-item:hover + .dock-item + .dock-item .dock-icon,
-    .dock-item:has(+ .dock-item + .dock-item:hover) .dock-icon {
-        width: 1.5rem;
+    /* Separator line, drawn in the extra left padding of the first link out */
+    .dock-separator::before {
+        content: "";
+        position: absolute;
+        left: 0.25rem;
+        bottom: 0.375rem;
+        width: 1px;
         height: 1.5rem;
+        background-color: rgb(64 64 64);
     }
 
-    /* Mobile dock menu, opened with the popover API */
-    .dock-menu {
-        position: fixed;
-        inset: auto 1.25rem 4.5rem auto;
-        margin: 0;
-        padding: 0;
-        border: 0;
-        background: transparent;
-        overflow: visible;
+    /* Dot under the page you're on, like the macOS dock */
+    .dock-item[data-active] .dock-circle::after {
+        content: "";
+        position: absolute;
+        top: calc(100% + 0.25rem);
+        left: 50%;
+        width: 0.25rem;
+        height: 0.25rem;
+        border-radius: 9999px;
+        background-color: rgb(212 212 212);
+        translate: -50% 0;
     }
 
-    .dock-menu:popover-open {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
+    @media (min-width: 48rem) {
+        .dock-circle {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+        .dock-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .dock-separator::before {
+            left: 0.34375rem;
+            bottom: 0.5rem;
+        }
     }
 
-    .dock-menu-item {
-        transition:
-            opacity 200ms,
-            translate 200ms;
-    }
+    /* Magnify only with a mouse: the hovered icon grows and its neighbors grow a bit less.
+       Each link's padding spans the gaps, so the hover never drops while moving across. */
+    @media (min-width: 48rem) and (hover: hover) and (pointer: fine) {
+        .dock-item:hover .dock-circle {
+            width: 5rem;
+            height: 5rem;
+        }
 
-    @starting-style {
-        .dock-menu:popover-open .dock-menu-item {
-            opacity: 0;
-            translate: 0 0.625rem;
+        .dock-item:hover .dock-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+        }
+
+        .dock-item:hover + .dock-item .dock-circle,
+        .dock-item:has(+ .dock-item:hover) .dock-circle {
+            width: 3.75rem;
+            height: 3.75rem;
+        }
+
+        .dock-item:hover + .dock-item .dock-icon,
+        .dock-item:has(+ .dock-item:hover) .dock-icon {
+            width: 1.875rem;
+            height: 1.875rem;
+        }
+
+        .dock-item:hover + .dock-item + .dock-item .dock-circle,
+        .dock-item:has(+ .dock-item + .dock-item:hover) .dock-circle {
+            width: 3rem;
+            height: 3rem;
+        }
+
+        .dock-item:hover + .dock-item + .dock-item .dock-icon,
+        .dock-item:has(+ .dock-item + .dock-item:hover) .dock-icon {
+            width: 1.5rem;
+            height: 1.5rem;
         }
     }
 }
@@ -244,7 +267,7 @@
         animation: none;
     }
 
-    .sparkle {
+    .sparkles {
         display: none;
     }
 
@@ -252,4 +275,18 @@
     .bg-animation * {
         animation: none;
     }
+}
+
+/* Inline code in posts: a subtle background instead of the typography plugin's backticks.
+   Unlayered so it wins over the plugin's styles. */
+.prose :not(pre) > code {
+    padding: 0.125rem 0.375rem;
+    border-radius: 0.25rem;
+    background-color: rgb(38 38 38);
+    font-weight: 400;
+}
+
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+    content: none;
 }

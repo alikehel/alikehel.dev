@@ -1,13 +1,21 @@
 import { resume } from "@/data/resume";
 
+export interface Crumb {
+    label: string;
+    /** Site-relative path, e.g. "/blog" */
+    path: string;
+}
+
 interface PageHeadOptions {
     /** Site-relative path, e.g. "/blog" */
     path: string;
     /** Full document title */
     title: string;
     description: string;
+    /** Trail from the home page to this page, used for breadcrumb structured data */
+    breadcrumbs?: Crumb[];
     /** Set for blog posts */
-    article?: { published: string };
+    article?: { headline: string; published: string };
 }
 
 export function absoluteUrl(path: string) {
@@ -15,17 +23,33 @@ export function absoluteUrl(path: string) {
 }
 
 // Per-page head tags. Meta tags override the root's defaults; the canonical link is only set here.
-export function pageHead({ path, title, description, article }: PageHeadOptions) {
+export function pageHead({ path, title, description, breadcrumbs, article }: PageHeadOptions) {
     const url = absoluteUrl(path);
-    const jsonLd = article && {
-        "@context": "https://schema.org",
-        "@type": "BlogPosting",
-        headline: title,
-        description,
-        datePublished: article.published,
-        url,
-        author: { "@type": "Person", name: resume.name, url: resume.url },
-    };
+
+    const jsonLd: object[] = [];
+    if (article) {
+        jsonLd.push({
+            "@context": "https://schema.org",
+            "@type": "BlogPosting",
+            headline: article.headline,
+            description,
+            datePublished: article.published,
+            url,
+            author: { "@type": "Person", name: resume.name, url: resume.url },
+        });
+    }
+    if (breadcrumbs) {
+        jsonLd.push({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: breadcrumbs.map((crumb, index) => ({
+                "@type": "ListItem",
+                position: index + 1,
+                name: crumb.label,
+                item: absoluteUrl(crumb.path),
+            })),
+        });
+    }
 
     return {
         meta: [
@@ -40,6 +64,6 @@ export function pageHead({ path, title, description, article }: PageHeadOptions)
             ...(article ? [{ property: "article:published_time", content: article.published }] : []),
         ],
         links: [{ rel: "canonical", href: url }],
-        scripts: jsonLd ? [{ type: "application/ld+json", children: JSON.stringify(jsonLd) }] : [],
+        scripts: jsonLd.map((data) => ({ type: "application/ld+json", children: JSON.stringify(data) })),
     };
 }
