@@ -43,14 +43,13 @@ export const resume = {
         ".",
     ],
     avatarUrl: "/me.webp",
-    /** Skills by group, from the projects where I have multiple commits. The logos are in public/skills. */
+    /** Skills by group, based on the projects I've worked on. The logos are in public/skills. */
     skills: [
         {
             group: "Languages",
             items: [
                 { name: "TypeScript", logoUrl: "/skills/typescript.svg" },
                 { name: "JavaScript", logoUrl: "/skills/javascript.svg" },
-                { name: "Python", logoUrl: "/skills/python.svg" },
             ],
         },
         {
@@ -59,9 +58,8 @@ export const resume = {
                 { name: "React.JS", logoUrl: "/skills/reactjs.svg" },
                 { name: "Next.JS", logoUrl: "/skills/nextjs.svg" },
                 { name: "TanStack", logoUrl: "/skills/tanstack.svg" },
-                { name: "Redux", logoUrl: "/skills/redux.svg" },
                 { name: "Tailwind CSS", logoUrl: "/skills/tailwindcss.svg" },
-                { name: "MUI", logoUrl: "/skills/mui.svg" },
+                { name: "shadcn/ui", logoUrl: "/skills/shadcnui.svg" },
                 { name: "Vite", logoUrl: "/skills/vite.svg" },
             ],
         },
@@ -71,7 +69,7 @@ export const resume = {
                 { name: "Node.JS", logoUrl: "/skills/nodejs.svg" },
                 { name: "Express", logoUrl: "/skills/express.svg" },
                 { name: "Hono", logoUrl: "/skills/hono.svg" },
-                { name: "Socket.IO", logoUrl: "/skills/socketio.svg" },
+                { name: "Zod", logoUrl: "/skills/zod.svg" },
                 { name: "Better Auth", logoUrl: "/skills/betterauth.svg" },
                 { name: "Stripe", logoUrl: "/skills/stripe.svg" },
             ],
@@ -84,12 +82,12 @@ export const resume = {
                 { name: "SQLite", logoUrl: "/skills/sqlite.svg" },
                 { name: "Sequelize", logoUrl: "/skills/sequelize.svg" },
                 { name: "Drizzle", logoUrl: "/skills/drizzle.svg" },
+                { name: "Prisma", logoUrl: "/skills/prisma.svg" },
             ],
         },
         {
             group: "Testing",
             items: [
-                { name: "Mocha", logoUrl: "/skills/mocha.svg" },
                 { name: "Vitest", logoUrl: "/skills/vitest.svg" },
                 { name: "Playwright", logoUrl: "/skills/playwright.svg" },
             ],
@@ -100,8 +98,8 @@ export const resume = {
                 { name: "Git", logoUrl: "/skills/git.svg" },
                 { name: "GitHub Actions", logoUrl: "/skills/githubactions.svg" },
                 { name: "Docker", logoUrl: "/skills/docker.svg" },
+                { name: "Turborepo", logoUrl: "/skills/turborepo.svg" },
                 { name: "Cloudflare", logoUrl: "/skills/cloudflare.svg" },
-                { name: "Firebase", logoUrl: "/skills/firebase.svg" },
             ],
         },
     ],
