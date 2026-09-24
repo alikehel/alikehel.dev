@@ -73,7 +73,6 @@ function Home() {
                             description={job.company}
                             href={job.href}
                             date={`${job.start} - ${job.end}`}
-                            current={job.end === "Present"}
                         />
                     ))}
                 </div>
@@ -90,7 +89,6 @@ function Home() {
                             description={client.description}
                             href={client.href}
                             date={`${client.start} - ${client.end}`}
-                            current={client.end === "Present"}
                         />
                     ))}
                 </div>
