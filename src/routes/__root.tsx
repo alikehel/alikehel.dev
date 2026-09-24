@@ -84,7 +84,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
                     height={78}
                     loading="lazy"
                     decoding="async"
-                    className="relative bottom-5 left-5 -z-50 mb-20 opacity-80 md:fixed md:right-5 md:left-auto md:mb-0"
+                    className="fixed right-5 bottom-5 -z-50 hidden opacity-80 md:block"
                 />
                 {/* The page is static HTML and CSS. Client JS only loads in dev, for hot reload. */}
                 {import.meta.env.DEV && <Scripts />}
