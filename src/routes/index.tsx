@@ -78,6 +78,23 @@ function Home() {
                     ))}
                 </div>
             </section>
+            {/* Freelance */}
+            <section className="flex flex-col gap-8">
+                <h2 className="text-2xl font-bold">Freelance</h2>
+                <div className="flex flex-col gap-2">
+                    {resume.freelance.map((client) => (
+                        <Card
+                            key={client.client}
+                            logoUrl={client.logoUrl}
+                            title={client.client}
+                            description={client.description}
+                            href={client.href}
+                            date={`${client.start} - ${client.end}`}
+                            current={client.end === "Present"}
+                        />
+                    ))}
+                </div>
+            </section>
             {/* Education */}
             <section className="flex flex-col gap-8">
                 <h2 className="text-2xl font-bold">Education</h2>
