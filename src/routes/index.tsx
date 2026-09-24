@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { Card } from "@/components/general/card";
+import { Skills } from "@/components/general/skills";
 import SparklesText from "@/components/ui/sparkles-text";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import { resume } from "@/data/resume";
@@ -42,8 +43,9 @@ function Home() {
                     </div>
                     <p className="text-2xl">{resume.description}</p>
                 </div>
-                {/* shrink-0 keeps the photo's size: without it, the text next to it squeezed it to a sliver on tablets */}
-                <div className="relative h-[170px] w-[223px] shrink-0">
+                {/* A fixed size: 156px wide next to the text, 223px on phones. Left to flex, the text next to it
+                    squeezed it to a sliver on tablets. */}
+                <div className="relative h-[170px] w-[223px] shrink-0 sm:w-[156px]">
                     <img
                         className="h-full w-full animate-morph border-2 object-cover"
                         src={resume.avatarUrl}
@@ -57,22 +59,7 @@ function Home() {
             {/* Skills */}
             <section className="flex flex-col gap-8">
                 <h2 className="text-2xl font-bold">Skills</h2>
-                <div className="flex flex-row flex-wrap gap-x-6 gap-y-4">
-                    {resume.skills.map((skill) => (
-                        <span key={skill.name} className="flex flex-row items-center gap-1 rounded-xl text-white">
-                            <img
-                                src={skill.logoUrl}
-                                alt=""
-                                width={32}
-                                height={32}
-                                loading="lazy"
-                                decoding="async"
-                                className="mr-1 h-8 w-8 rounded-xl"
-                            />
-                            {skill.name}
-                        </span>
-                    ))}
-                </div>
+                <Skills />
             </section>
             {/* Work Experience */}
             <section className="flex flex-col gap-8">
