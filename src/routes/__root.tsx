@@ -103,7 +103,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
                     <span className="shooting-star" />
                     <span className="shooting-star" />
                 </div>
-                {/* Jinx's monkey, from Arcane. Hover it on a computer, or visit a page that doesn't exist. */}
+                {/* Jinx's monkey, from Arcane. Hover it on a computer. */}
                 <div aria-hidden="true" className="monkey">
                     <span className="monkey-bubble">Get excited!</span>
                     <img src="/jinx-monkey.webp" alt="" width={100} height={78} loading="lazy" decoding="async" />
@@ -117,19 +117,14 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
 
 function NotFound() {
     return (
-        // `not-found` also sends Jinx's monkey floating around the screen (see space.css)
+        // `not-found` hides the corner monkey here, since it's already in the heading (see space.css)
         <main className="not-found relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col items-center justify-center gap-4 px-6 text-center">
             <h1 className="text-8xl font-bold sm:text-9xl">
                 <span className="sr-only">404</span>
-                {/* The zero is a planet */}
+                {/* The zero is Jinx's monkey, floating in zero gravity */}
                 <span aria-hidden="true" className="inline-flex items-center">
                     4
-                    <span className="planet">
-                        <span className="planet-ring" />
-                        <span className="planet-body" />
-                        <span className="planet-ring planet-ring-front" />
-                    </span>
-                    4
+                    <img src="/jinx-monkey.webp" alt="" width={200} height={156} className="lost-monkey" />4
                 </span>
             </h1>
             <p className="text-3xl font-bold">Lost in space</p>

@@ -281,9 +281,8 @@
 
     .animate-morph,
     .bg-animation *,
-    .planet,
-    .monkey:hover img,
-    .not-found ~ .monkey {
+    .lost-monkey,
+    .monkey:hover img {
         animation: none;
     }
 }

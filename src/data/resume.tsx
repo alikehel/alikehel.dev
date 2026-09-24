@@ -60,6 +60,30 @@ export const resume = {
             name: "React.JS",
             logoUrl: "/skills/reactjs.svg",
         },
+        {
+            name: "TanStack",
+            logoUrl: "/skills/tanstack.svg",
+        },
+        {
+            name: "Vite",
+            logoUrl: "/skills/vite.svg",
+        },
+        {
+            name: "Tailwind CSS",
+            logoUrl: "/skills/tailwindcss.svg",
+        },
+        {
+            name: "PostgreSQL",
+            logoUrl: "/skills/postgresql.svg",
+        },
+        {
+            name: "Docker",
+            logoUrl: "/skills/docker.svg",
+        },
+        {
+            name: "Cloudflare",
+            logoUrl: "/skills/cloudflare.svg",
+        },
     ],
     contact: {
         email: "ali.kehel.27.2@gmail.com",

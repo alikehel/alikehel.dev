@@ -57,7 +57,7 @@ function Home() {
             {/* Skills */}
             <section className="flex flex-col gap-8">
                 <h2 className="text-2xl font-bold">Skills</h2>
-                <div className="flex flex-row flex-wrap gap-6">
+                <div className="flex flex-row flex-wrap gap-x-6 gap-y-4">
                     {resume.skills.map((skill) => (
                         <span key={skill.name} className="flex flex-row items-center gap-1 rounded-xl text-white">
                             <img
