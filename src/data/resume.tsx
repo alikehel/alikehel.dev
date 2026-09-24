@@ -43,46 +43,54 @@ export const resume = {
         ".",
     ],
     avatarUrl: "/me.webp",
+    /** Skills by group. The logos are in public/skills. */
     skills: [
         {
-            name: "JavaScript",
-            logoUrl: "/skills/javascript.svg",
+            group: "Languages",
+            items: [
+                { name: "JavaScript", logoUrl: "/skills/javascript.svg" },
+                { name: "TypeScript", logoUrl: "/skills/typescript.svg" },
+            ],
         },
         {
-            name: "TypeScript",
-            logoUrl: "/skills/typescript.svg",
+            group: "Frontend",
+            items: [
+                { name: "React.JS", logoUrl: "/skills/reactjs.svg" },
+                { name: "Next.JS", logoUrl: "/skills/nextjs.svg" },
+                { name: "TanStack", logoUrl: "/skills/tanstack.svg" },
+                { name: "Tailwind CSS", logoUrl: "/skills/tailwindcss.svg" },
+                { name: "Vite", logoUrl: "/skills/vite.svg" },
+            ],
         },
         {
-            name: "Node.JS",
-            logoUrl: "/skills/nodejs.svg",
+            group: "Backend",
+            items: [
+                { name: "Node.JS", logoUrl: "/skills/nodejs.svg" },
+                { name: "Express", logoUrl: "/skills/express.svg" },
+            ],
         },
         {
-            name: "React.JS",
-            logoUrl: "/skills/reactjs.svg",
+            group: "Databases",
+            items: [
+                { name: "PostgreSQL", logoUrl: "/skills/postgresql.svg" },
+                { name: "MySQL", logoUrl: "/skills/mysql.svg" },
+                { name: "SQLite", logoUrl: "/skills/sqlite.svg" },
+            ],
         },
         {
-            name: "TanStack",
-            logoUrl: "/skills/tanstack.svg",
+            group: "Testing",
+            items: [
+                { name: "Vitest", logoUrl: "/skills/vitest.svg" },
+                { name: "Playwright", logoUrl: "/skills/playwright.svg" },
+            ],
         },
         {
-            name: "Vite",
-            logoUrl: "/skills/vite.svg",
-        },
-        {
-            name: "Tailwind CSS",
-            logoUrl: "/skills/tailwindcss.svg",
-        },
-        {
-            name: "PostgreSQL",
-            logoUrl: "/skills/postgresql.svg",
-        },
-        {
-            name: "Docker",
-            logoUrl: "/skills/docker.svg",
-        },
-        {
-            name: "Cloudflare",
-            logoUrl: "/skills/cloudflare.svg",
+            group: "DevOps",
+            items: [
+                { name: "Docker", logoUrl: "/skills/docker.svg" },
+                { name: "Git", logoUrl: "/skills/git.svg" },
+                { name: "Cloudflare", logoUrl: "/skills/cloudflare.svg" },
+            ],
         },
     ],
     contact: {
