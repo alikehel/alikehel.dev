@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 import { Card } from "@/components/general/card";
 import SparklesText from "@/components/ui/sparkles-text";
@@ -13,11 +13,15 @@ export const Route = createFileRoute("/")({
     component: Home,
 });
 
-const linkedinUrl = resume.contact.social.find((item) => item.name === "LinkedIn")?.url;
+const socialUrl = (name: string) => resume.contact.social.find((item) => item.name === name)?.url;
+const githubUrl = socialUrl("GitHub");
+const linkedinUrl = socialUrl("LinkedIn");
+const emailUrl = socialUrl("Email");
 
 function Home() {
     return (
-        <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-16 px-6 pt-16 pb-32 md:pt-36 md:pb-44">
+        // `relative z-10` keeps the content above Jinx's monkey, which sits in the corner behind it
+        <main className="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col gap-16 px-6 pt-16 pb-32 md:pt-36 md:pb-44">
             {/* Hero */}
             <section className="flex flex-col-reverse items-center justify-between gap-6 sm:flex-row">
                 <div className="flex flex-col gap-3 md:max-w-[75%]">
@@ -38,7 +42,8 @@ function Home() {
                     </div>
                     <p className="text-2xl">{resume.description}</p>
                 </div>
-                <div className="relative h-[170px] w-[223px]">
+                {/* shrink-0 keeps the photo's size: without it, the text next to it squeezed it to a sliver on tablets */}
+                <div className="relative h-[170px] w-[223px] shrink-0">
                     <img
                         className="h-full w-full animate-morph border-2 object-cover"
                         src={resume.avatarUrl}
@@ -81,6 +86,7 @@ function Home() {
                             description={job.company}
                             href={job.href}
                             date={`${job.start} - ${job.end}`}
+                            current={job.end === "Present"}
                         />
                     ))}
                 </div>
@@ -116,6 +122,19 @@ function Home() {
                         />
                     ))}
                 </div>
+                <a
+                    href={githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link group inline-flex w-fit items-center gap-1.5 text-[#4177BD]"
+                >
+                    More on GitHub
+                    <ArrowUpRight
+                        aria-hidden="true"
+                        className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
+                    <span className="sr-only">(opens in a new tab)</span>
+                </a>
             </section>
             {/* Writing */}
             {posts.length > 0 && (
@@ -132,7 +151,7 @@ function Home() {
                             />
                         ))}
                     </div>
-                    <a href="/blog" className="group inline-flex w-fit items-center gap-1.5 text-[#4177BD] underline">
+                    <a href="/blog" className="link group inline-flex w-fit items-center gap-1.5 text-[#4177BD]">
                         All posts
                         <ArrowRight
                             aria-hidden="true"
@@ -144,12 +163,16 @@ function Home() {
             {/* Contact */}
             <section className="flex flex-col gap-8 text-center">
                 <SparklesText sparklesCount={5} seed={2} className="text-6xl font-bold">
-                    <h2 className="self-center text-6xl font-bold">Contact</h2>
+                    <h2 className="self-center text-6xl font-bold">Say hi</h2>
                 </SparklesText>
                 <p className="text-2xl">
-                    Feel free to contact me at{" "}
-                    <a className="text-[#4177BD] underline" href={linkedinUrl}>
+                    Have a project in mind, a role to fill, or just want to talk about anime? Message me on{" "}
+                    <a className="link text-[#4177BD]" href={linkedinUrl}>
                         LinkedIn
+                    </a>{" "}
+                    or send me an{" "}
+                    <a className="link text-[#4177BD]" href={emailUrl}>
+                        email
                     </a>
                     . I&apos;m always open to new opportunities and collaborations.
                 </p>

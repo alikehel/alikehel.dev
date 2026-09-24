@@ -16,7 +16,8 @@ export interface DockItem {
 // The magnify effect, tooltips and the active dot are CSS-only (see `.dock-*` in globals.css).
 export function FloatingDock({ pages, links }: { pages: DockItem[]; links: DockItem[] }) {
     return (
-        <div className="pointer-events-auto flex h-14 items-end rounded-2xl bg-neutral-900 px-1.5 pb-2.5 md:h-16 md:px-2 md:pb-3">
+        // `dock` keeps it in place during page transitions
+        <div className="dock pointer-events-auto flex h-14 items-end rounded-2xl bg-neutral-900 px-1.5 pb-2.5 md:h-16 md:px-2 md:pb-3">
             {pages.map((item) => (
                 <DockLink key={item.title} item={item} />
             ))}

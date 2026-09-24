@@ -1,3 +1,5 @@
+/* The starry sky behind every page: four layers of box-shadow stars. Bigger stars are nearer, so they
+   drift faster, and move more when the page scrolls (see the parallax at the end of this file). */
 .bg-animation {
     position: fixed;
     top: 0;
@@ -711,7 +713,7 @@
         848px 1749px #ce93d8,
         1963px 1045px #ce93d8,
         119px 1136px #ce93d8;
-    animation: animStar 50s linear infinite;
+    animation: animStar 150s linear infinite;
 }
 
 .stars:after {
@@ -1047,7 +1049,7 @@
         1096px 1068px #ce93d8,
         1462px 742px #ce93d8,
         1384px 1750px #ce93d8;
-    animation: animStar 150s linear infinite;
+    animation: animStar 70s linear infinite;
 }
 
 .stars3:after {
@@ -1684,5 +1686,71 @@
 
     to {
         transform: translateY(-2000px);
+    }
+}
+
+/* Parallax: while the page scrolls, each layer moves up at its own speed, nearer layers more.
+   The drift above animates `transform` and this animates `translate`, so the two add up.
+   It spans the first 3000px of scrolling. Browsers without scroll-driven animations keep the drift only. */
+@supports (animation-timeline: scroll()) {
+    .stars {
+        animation:
+            animStar 150s linear infinite,
+            parallax-far linear both;
+        animation-timeline: auto, scroll(root);
+        animation-range:
+            normal,
+            0 3000px;
+    }
+
+    .stars2 {
+        animation:
+            animStar 100s linear infinite,
+            parallax-mid linear both;
+        animation-timeline: auto, scroll(root);
+        animation-range:
+            normal,
+            0 3000px;
+    }
+
+    .stars3 {
+        animation:
+            animStar 70s linear infinite,
+            parallax-near linear both;
+        animation-timeline: auto, scroll(root);
+        animation-range:
+            normal,
+            0 3000px;
+    }
+
+    .stars4 {
+        animation: parallax-farthest linear both;
+        animation-timeline: scroll(root);
+        animation-range: 0 3000px;
+    }
+}
+
+/* Each layer's pattern repeats every 2000px, so these stay under ~500px to never leave a gap at the bottom */
+@keyframes parallax-farthest {
+    to {
+        translate: 0 -60px;
+    }
+}
+
+@keyframes parallax-far {
+    to {
+        translate: 0 -120px;
+    }
+}
+
+@keyframes parallax-mid {
+    to {
+        translate: 0 -240px;
+    }
+}
+
+@keyframes parallax-near {
+    to {
+        translate: 0 -440px;
     }
 }

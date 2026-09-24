@@ -15,7 +15,7 @@ export const resume = {
         <strong key={"role"} className="font-bold text-[#4177BD]">
             Software Engineer
         </strong>,
-        ". I build web applications with TypeScript. I also love watching ",
+        ". I build web apps with TypeScript, and I love watching ",
         <img
             key={"killua"}
             className="mr-0.5 inline-block max-h-[1.3rem] max-w-[1.3rem] rounded-full border-2 border-[#4177BD] bg-white object-cover"
@@ -40,7 +40,7 @@ export const resume = {
         <span key={"games"} className="text-[#4177BD]">
             games
         </span>,
-        " in my free time.",
+        ".",
     ],
     avatarUrl: "/me.webp",
     skills: [
@@ -142,7 +142,7 @@ export const resume = {
             title: "Disworse",
             href: "https://github.com/activecourses/disworse",
             date: "2024",
-            description: "Discord clone frontend with monorepo architecture for typescript fullstack typesafety.",
+            description: "The frontend of a Discord clone, in a TypeScript monorepo with end-to-end type safety.",
             technologies: [
                 "TypeScript",
                 "React.js",
@@ -157,7 +157,7 @@ export const resume = {
             title: "Active Courses",
             href: "https://github.com/alikehel/activecourses",
             date: "2023",
-            description: "The website for Active Courses discord server (Biggest Egyptian tech community on Discord).",
+            description: "The website for Active Courses, the biggest Egyptian tech community on Discord.",
             technologies: ["TypeScript", "MDX", "React.js", "Docusaurus"],
             logoUrl: "/projects/activecourses/logo.webp",
         },
@@ -165,8 +165,7 @@ export const resume = {
             title: "Cloud Education (Graduation Project)",
             href: "https://github.com/alikehel/bfcai-graduation-project-cloud-education-api",
             date: "2023",
-            description:
-                "A Complete Education System on the cloud that aims to be a replacement for the traditional offline school.",
+            description: "A complete education system in the cloud, built to replace the traditional offline school.",
             technologies: ["TypeScript", "Node.js", "Express.js", "PostgreSQL"],
             logoUrl: "/projects/cloudeducation/logo.webp",
         },

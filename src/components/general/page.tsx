@@ -2,10 +2,14 @@ import type { ReactNode } from "react";
 
 import { ArrowLeft } from "lucide-react";
 
-// Shell for content pages (blog, uses): a link back to the parent page, the heading, then the content
+import { cn } from "@/lib/utils";
+
+// Shell for content pages (blog, uses): a link back to the parent page, the heading, then the content.
+// `relative z-10` keeps the content above Jinx's monkey, which sits in the corner behind it.
 export function Page({
     back,
     title,
+    titleTransitionName,
     description,
     meta,
     children,
@@ -13,17 +17,19 @@ export function Page({
     /** The parent page, e.g. { href: "/blog", label: "Blog" } */
     back: { href: string; label: string };
     title: string;
+    /** view-transition-name for the heading, so a title can fly in from a list (see `.shared-title`) */
+    titleTransitionName?: string;
     description?: string;
     /** Extra line under the description, e.g. a date */
     meta?: ReactNode;
     children: ReactNode;
 }) {
     return (
-        <main className="mx-auto flex min-h-screen max-w-3xl flex-col gap-10 px-6 pt-16 pb-32 md:pt-28 md:pb-44">
+        <main className="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col gap-10 px-6 pt-16 pb-32 md:pt-28 md:pb-44">
             <header className="flex flex-col gap-3">
                 <a
                     href={back.href}
-                    className="group inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-neutral-400 transition-colors hover:text-white"
+                    className="link group inline-flex w-fit items-center gap-1.5 text-sm font-semibold text-neutral-400 [--link-base:transparent] hover:text-white"
                 >
                     <ArrowLeft
                         aria-hidden="true"
@@ -31,7 +37,12 @@ export function Page({
                     />
                     <span className="sr-only">Back to</span> {back.label}
                 </a>
-                <h1 className="text-4xl font-bold">{title}</h1>
+                <h1
+                    className={cn("text-4xl font-bold", titleTransitionName && "shared-title w-fit")}
+                    style={titleTransitionName ? { viewTransitionName: titleTransitionName } : undefined}
+                >
+                    {title}
+                </h1>
                 {description && <p className="text-xl opacity-80">{description}</p>}
                 {meta}
             </header>

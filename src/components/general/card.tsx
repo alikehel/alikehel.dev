@@ -8,9 +8,11 @@ interface CardProps {
     description?: string;
     href?: string;
     date?: string;
+    /** Show a "Now" badge, e.g. on the current job */
+    current?: boolean;
 }
 
-export function Card({ className, logoUrl, title, href, description, date }: CardProps) {
+export function Card({ className, logoUrl, title, href, description, date, current }: CardProps) {
     // Links to other sites open in a new tab and get a diagonal arrow; links within the site get a straight one
     const external = href ? /^https?:/.test(href) : false;
 
@@ -32,7 +34,12 @@ export function Card({ className, logoUrl, title, href, description, date }: Car
                     <h3 className="text-xl">
                         {href ? <TitleWithArrow title={title} external={external} className="h-4 w-4" /> : title}
                     </h3>
-                    {description && <p className="opacity-80">{description}</p>}
+                    {(description || current) && (
+                        <p>
+                            {description && <span className="opacity-80">{description}</span>}
+                            {current && <NowBadge />}
+                        </p>
+                    )}
                 </div>
             </div>
             {date && <p className="hidden w-64 shrink-0 text-end opacity-80 sm:block">{date}</p>}
@@ -45,7 +52,12 @@ export function Card({ className, logoUrl, title, href, description, date }: Car
     if (href) {
         return (
             <a
-                className={cn(layout, "group transition-colors duration-200 hover:bg-[#70707050]", className)}
+                // Lifts a little on hover. The strip under it keeps the hover while the card is raised.
+                className={cn(
+                    layout,
+                    "group relative transition duration-200 after:absolute after:inset-x-0 after:top-full after:h-1 hover:-translate-y-0.5 hover:bg-[#70707050]",
+                    className,
+                )}
                 href={href}
                 {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
             >
@@ -55,6 +67,18 @@ export function Card({ className, logoUrl, title, href, description, date }: Car
         );
     }
 
-    // Cards without a link don't highlight on hover, so they don't look clickable
+    // Cards without a link don't highlight or lift on hover, so they don't look clickable
     return <div className={cn(layout, className)}>{content}</div>;
+}
+
+function NowBadge() {
+    return (
+        <span className="ml-2 inline-flex items-center gap-1.5 rounded-full bg-emerald-400/10 px-2 py-0.5 align-[0.1em] text-xs font-semibold text-emerald-300 ring-1 ring-emerald-400/30 ring-inset">
+            <span aria-hidden="true" className="relative flex h-1.5 w-1.5">
+                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400 opacity-75 motion-reduce:animate-none" />
+                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            </span>
+            Now
+        </span>
+    );
 }
