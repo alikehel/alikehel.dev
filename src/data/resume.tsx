@@ -5,11 +5,11 @@ export const resume = {
     initials: "AK",
     title: "Software Engineer",
     url: "https://alikehel.dev/",
-    location: "Egypt",
+    location: "Cairo, Egypt",
     locationLink: "https://www.google.com/maps/place",
     /** Plain-text summary used for the meta description */
     summary:
-        "Ali Kehel is a Software Engineer from Egypt who builds web applications with TypeScript, React, and Node.js.",
+        "Ali Kehel is a Software Engineer from Cairo, Egypt, who builds web applications with TypeScript, React and Node.js.",
     description: [
         "I'm a ",
         <strong key={"role"} className="font-bold text-[#4177BD]">
@@ -60,7 +60,6 @@ export const resume = {
                 { name: "TanStack", logoUrl: "/skills/tanstack.svg" },
                 { name: "Tailwind CSS", logoUrl: "/skills/tailwindcss.svg" },
                 { name: "shadcn/ui", logoUrl: "/skills/shadcnui.svg" },
-                { name: "Vite", logoUrl: "/skills/vite.svg" },
             ],
         },
         {
@@ -98,7 +97,6 @@ export const resume = {
                 { name: "Git", logoUrl: "/skills/git.svg" },
                 { name: "GitHub Actions", logoUrl: "/skills/githubactions.svg" },
                 { name: "Docker", logoUrl: "/skills/docker.svg" },
-                { name: "Turborepo", logoUrl: "/skills/turborepo.svg" },
                 { name: "Cloudflare", logoUrl: "/skills/cloudflare.svg" },
             ],
         },
@@ -152,9 +150,9 @@ export const resume = {
     ],
     work: [
         {
-            company: "OVARC",
+            company: "Ovarc",
             href: "https://www.linkedin.com/company/ovarc",
-            location: "Maadi, Cairo, Egypt",
+            location: "Cairo, Egypt",
             title: "Software Engineer",
             logoUrl: "/work/ovarc.webp",
             start: "Jan 2025",
@@ -166,7 +164,8 @@ export const resume = {
         {
             client: "Talabatk",
             href: "https://talabatk.top",
-            description: "A food delivery platform. I work on its API and admin dashboard, and built its landing page.",
+            description:
+                "Food-delivery platform in Palestine. I own its API and admin dashboard as the sole engineer, and built its landing page.",
             logoUrl: "/work/talabatk.webp",
             start: "Feb 2026",
             end: "Present",
@@ -175,7 +174,7 @@ export const resume = {
             client: "StudyGo",
             href: "https://studygo.info",
             description:
-                "An Arabic-first learning platform for students, parents and teachers, which I built from scratch.",
+                "Arabic-first learning marketplace for students, parents and teachers in Palestine, which I built alone on Cloudflare Workers.",
             logoUrl: "/work/studygo.webp",
             start: "Apr 2026",
             end: "Aug 2026",
@@ -183,7 +182,8 @@ export const resume = {
         {
             client: "Ejaza",
             href: "",
-            description: "A learning platform. I built most of its API, plus its admin and teacher dashboards.",
+            description:
+                "Online learning platform in Egypt connecting Quran teachers with students. In a team of five, I set up the monorepo, CI and deploys, the server structure and auth, and the teacher verification flow.",
             logoUrl: "/work/ejaza.webp",
             start: "Jun 2025",
             end: "Jul 2025",
@@ -192,7 +192,7 @@ export const resume = {
             client: "Naslook",
             href: "",
             description:
-                "A marketplace for services, products and offers. I built its API, admin dashboard and landing page.",
+                "Marketplace for services, products and offers in Saudi Arabia. I built its API, admin dashboard and landing page.",
             logoUrl: "/work/naslook.webp",
             start: "Oct 2024",
             end: "Dec 2024",
@@ -200,7 +200,8 @@ export const resume = {
         {
             client: "Al Barq",
             href: "",
-            description: "A delivery app, with an API, a mobile app and an admin dashboard.",
+            description:
+                "Courier and shipping platform for a logistics company in Iraq. I replaced its legacy PHP system with a new TypeScript backend for the web client and mobile app.",
             logoUrl: "/work/albarq.webp",
             start: "Oct 2023",
             end: "Sep 2024",
@@ -208,35 +209,29 @@ export const resume = {
     ],
     projects: [
         {
-            title: "Disworse",
-            href: "https://github.com/activecourses/disworse",
-            date: "2024",
-            description: "The frontend of a Discord clone, in a TypeScript monorepo with end-to-end type safety.",
-            technologies: [
-                "TypeScript",
-                "React.js",
-                "Tanstack Query",
-                "Tanstack Router",
-                "Tanstack Form",
-                "Tailwind CSS",
-            ],
-            logoUrl: "/projects/disworse/logo.webp",
+            title: "Cloud Education (Graduation Project)",
+            href: "https://github.com/alikehel/bfcai-graduation-project-cloud-education-api",
+            date: "2023",
+            description: "Graduation project: a Node.js and PostgreSQL education platform API with AI-graded exams.",
+            technologies: ["TypeScript", "Node.js", "Express.js", "PostgreSQL"],
+            logoUrl: "/projects/cloudeducation/logo.webp",
+        },
+        {
+            title: "alikehel.dev",
+            href: "https://github.com/alikehel/alikehel.dev",
+            date: "2026",
+            description:
+                "This site: TanStack Start on Cloudflare Workers, prerendered with no client JavaScript, Lighthouse 100.",
+            technologies: ["TypeScript", "React.js", "TanStack Start", "Tailwind CSS", "Cloudflare Workers"],
+            logoUrl: "/projects/alikehel-dev/logo.svg",
         },
         {
             title: "Active Courses",
             href: "https://github.com/alikehel/activecourses",
             date: "2023",
-            description: "The website for Active Courses, the biggest Egyptian tech community on Discord.",
+            description: "The website of an Egyptian tech community on Discord; maintainer since 2023.",
             technologies: ["TypeScript", "MDX", "React.js", "Docusaurus"],
             logoUrl: "/projects/activecourses/logo.webp",
-        },
-        {
-            title: "Cloud Education (Graduation Project)",
-            href: "https://github.com/alikehel/bfcai-graduation-project-cloud-education-api",
-            date: "2023",
-            description: "A complete education system in the cloud, built to replace the traditional offline school.",
-            technologies: ["TypeScript", "Node.js", "Express.js", "PostgreSQL"],
-            logoUrl: "/projects/cloudeducation/logo.webp",
         },
     ],
 } as const;

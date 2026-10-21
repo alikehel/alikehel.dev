@@ -80,6 +80,7 @@ function Home() {
             {/* Freelance */}
             <section className="flex flex-col gap-8">
                 <h2 className="text-2xl font-bold">Freelance</h2>
+                <p className="-mt-5 opacity-80">Part-time contract work alongside my full-time job.</p>
                 <div className="flex flex-col gap-2">
                     {resume.freelance.map((client) => (
                         <Card
