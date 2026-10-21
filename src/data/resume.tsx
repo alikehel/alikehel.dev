@@ -233,5 +233,20 @@ export const resume = {
             technologies: ["TypeScript", "MDX", "React.js", "Docusaurus"],
             logoUrl: "/projects/activecourses/logo.webp",
         },
+        {
+            title: "Disworse",
+            href: "https://github.com/activecourses/disworse",
+            date: "2024",
+            description: "The frontend of a Discord clone, in a TypeScript monorepo with end-to-end type safety.",
+            technologies: [
+                "TypeScript",
+                "React.js",
+                "Tanstack Query",
+                "Tanstack Router",
+                "Tanstack Form",
+                "Tailwind CSS",
+            ],
+            logoUrl: "/projects/disworse/logo.webp",
+        },
     ],
 } as const;
