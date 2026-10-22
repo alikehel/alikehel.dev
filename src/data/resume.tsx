@@ -498,13 +498,19 @@ export const resume = {
             start: "2016",
             end: "2018",
             location: "6th of October, Egypt",
-            summary: "Egypt's public high school for science, technology, engineering and mathematics.",
+            summary: "Egypt's first STEM high school: a selective public boarding school in 6th of October City.",
             highlights: [
-                "One of Egypt's selective public STEM schools, with admission by national exam; a boarding school in 6th of October City.",
-                "Project-based curriculum: a capstone project every semester, built around one of Egypt's grand challenges.",
+                "Opened in September 2011 with USAID support as Egypt's first STEM high school, with a curriculum co-designed with the 21st Century Partnership for STEM Education in Philadelphia; a residential school that admits about 150 of thousands of applicants a year through a national exam.",
+                "An integrated, project-based curriculum: physics, chemistry, biology, geology, mathematics and mechanics at honors level, each semester built around a theme, with learning outcomes mapped to the Next Generation Science Standards.",
+                "A capstone project every semester, in teams, following the engineering design process on one of Egypt's grand challenges (energy, water, housing, agriculture, industry, communication); five completed projects are required for the diploma.",
+                "Each capstone runs on written journals scored every few weeks, a prototype built in the school's Fab Lab, and a closing exhibition where a panel of university professors in science and engineering grades the work.",
+                "Alongside the sciences: Arabic, a second European language, social studies and civics, an arts track, and mandatory sport.",
             ],
             technologies: [],
-            links: [{ label: "stemegypt.net", href: "https://www.stemegypt.net/" }],
+            links: [
+                { label: "stemegypt.net", href: "https://www.stemegypt.net/" },
+                { label: "The academic program", href: "https://www.stemegypt.net/academics" },
+            ],
         },
         {
             slug: "udacity",
