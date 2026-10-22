@@ -50,7 +50,7 @@ export function EntryPage({ section, slug }: { section: Section; slug: string })
             )}
             {entry.technologies.length > 0 && (
                 <section className="flex flex-col gap-4">
-                    <h2 className="text-2xl font-bold">Technologies</h2>
+                    <h2 className="text-2xl font-bold">{section === "education" ? "Skills" : "Technologies"}</h2>
                     <ul className="flex flex-wrap gap-2">
                         {entry.technologies.map((name) => {
                             const logoUrl = technologyLogo(name);

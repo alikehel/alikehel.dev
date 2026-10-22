@@ -484,7 +484,16 @@ export const resume = {
                 "Graduation project: Cloud Education, an education platform API with AI-graded exams.",
                 "Coursework: data structures and algorithms, object-oriented programming, software engineering, operating systems, databases, networking and web development.",
             ],
-            technologies: [],
+            technologies: [
+                "Data Structures",
+                "Algorithms",
+                "Object-Oriented Programming",
+                "Software Engineering",
+                "Operating Systems",
+                "Databases",
+                "Networking",
+                "Web Development",
+            ],
             links: [
                 { label: "Cloud Education, the graduation project", href: "/projects/cloud-education" },
                 { label: "fci.bu.edu.eg", href: "https://fci.bu.edu.eg/" },
@@ -506,7 +515,15 @@ export const resume = {
                 "Each capstone runs on written journals scored every few weeks, a prototype built in the school's Fab Lab, and a closing exhibition where a panel of university professors in science and engineering grades the work.",
                 "Alongside the sciences: Arabic, a second European language, social studies and civics, an arts track, and mandatory sport.",
             ],
-            technologies: [],
+            technologies: [
+                "Physics",
+                "Chemistry",
+                "Mathematics",
+                "Research",
+                "Engineering Design",
+                "Presentation",
+                "Teamwork",
+            ],
             links: [
                 { label: "stemegypt.net", href: "https://www.stemegypt.net/" },
                 { label: "The academic program", href: "https://www.stemegypt.net/academics" },
@@ -525,7 +542,7 @@ export const resume = {
                 "Professional Web Development Nanodegree, February 2022, through the egFWD initiative of Egypt's Ministry of Communications: HTML, CSS and JavaScript fundamentals, with a landing page and a weather journal app on Node and Express as projects.",
                 "Advanced Web Development Nanodegree, November 2022: Node.js and Express APIs in TypeScript with PostgreSQL and tests, with an image-processing API, a storefront backend and the Udagram deployment to AWS as projects.",
             ],
-            technologies: [],
+            technologies: ["HTML", "CSS", "JavaScript", "TypeScript", "Node.js", "Express", "PostgreSQL", "AWS"],
             links: [
                 {
                     label: "Professional certificate",
