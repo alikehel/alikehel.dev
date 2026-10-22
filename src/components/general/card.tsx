@@ -5,12 +5,16 @@ interface CardProps {
     className?: string;
     logoUrl?: string;
     title: string;
+    /** view-transition-name for the title, so it flies into place on the page it links to (see `.shared-title`) */
+    titleTransitionName?: string;
+    /** Small line under the title, e.g. the role */
+    subtitle?: string;
     description?: string;
     href?: string;
     date?: string;
 }
 
-export function Card({ className, logoUrl, title, href, description, date }: CardProps) {
+export function Card({ className, logoUrl, title, titleTransitionName, subtitle, href, description, date }: CardProps) {
     // Links to other sites open in a new tab and get a diagonal arrow; links within the site get a straight one
     const external = href ? /^https?:/.test(href) : false;
 
@@ -29,9 +33,13 @@ export function Card({ className, logoUrl, title, href, description, date }: Car
                     />
                 )}
                 <div>
-                    <h3 className="text-xl">
+                    <h3
+                        className={cn("text-xl", titleTransitionName && "shared-title w-fit")}
+                        style={titleTransitionName ? { viewTransitionName: titleTransitionName } : undefined}
+                    >
                         {href ? <TitleWithArrow title={title} external={external} className="h-4 w-4" /> : title}
                     </h3>
+                    {subtitle && <p className="text-sm text-neutral-400">{subtitle}</p>}
                     {description && <p className="opacity-80">{description}</p>}
                 </div>
             </div>

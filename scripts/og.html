@@ -1,0 +1,175 @@
+<!doctype html>
+<!-- The Open Graph image (public/og.jpg): the home page's hero, drawn at 1200 by 630. Render it with scripts/og.sh. -->
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Open Graph image</title>
+        <style>
+            html,
+            body {
+                margin: 0;
+                background: #000;
+                color: #fafafa;
+                font-family:
+                    ui-sans-serif,
+                    system-ui,
+                    -apple-system,
+                    "Segoe UI",
+                    Roboto,
+                    "Helvetica Neue",
+                    Arial,
+                    sans-serif;
+                -webkit-font-smoothing: antialiased;
+            }
+
+            .card {
+                position: relative;
+                width: 1200px;
+                height: 630px;
+                overflow: hidden;
+                box-sizing: border-box;
+                padding: 120px 96px 0;
+                background:
+                    radial-gradient(56rem 36rem at 90% 0%, rgb(65 119 189 / 0.16), transparent 70%),
+                    radial-gradient(48rem 32rem at 0% 100%, rgb(206 147 216 / 0.1), transparent 70%), #000;
+            }
+
+            /* The stars: two layers of small dots */
+            .stars {
+                position: absolute;
+                inset: 0;
+                background-image:
+                    radial-gradient(1.5px 1.5px at 20px 30px, #fff, transparent),
+                    radial-gradient(1px 1px at 90px 120px, rgb(255 255 255 / 0.8), transparent),
+                    radial-gradient(1.5px 1.5px at 160px 60px, #d8b4fe, transparent),
+                    radial-gradient(1px 1px at 230px 170px, #fff, transparent),
+                    radial-gradient(1px 1px at 300px 40px, rgb(255 255 255 / 0.7), transparent),
+                    radial-gradient(1.5px 1.5px at 350px 140px, #fff, transparent),
+                    radial-gradient(1px 1px at 60px 200px, #d8b4fe, transparent),
+                    radial-gradient(1px 1px at 190px 230px, rgb(255 255 255 / 0.6), transparent);
+                background-size: 380px 250px;
+                opacity: 0.9;
+            }
+
+            .hero {
+                position: relative;
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 48px;
+            }
+
+            .text {
+                max-width: 760px;
+            }
+
+            h1 {
+                margin: 0 0 20px;
+                font-size: 64px;
+                line-height: 1.1;
+                font-weight: 700;
+                letter-spacing: -0.02em;
+            }
+
+            .name {
+                color: #4177bd;
+            }
+
+            p {
+                margin: 0;
+                font-size: 32px;
+                line-height: 1.4;
+            }
+
+            .blue {
+                color: #4177bd;
+            }
+
+            .emoji {
+                display: inline-block;
+                width: 32px;
+                height: 32px;
+                margin-right: 4px;
+                vertical-align: -6px;
+                border: 2px solid #4177bd;
+                border-radius: 9999px;
+                background: #fff;
+                object-fit: cover;
+            }
+
+            .photo {
+                flex-shrink: 0;
+                width: 250px;
+                height: 250px;
+                object-fit: cover;
+                border: 3px solid #fafafa;
+                border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            }
+
+            .skills {
+                position: absolute;
+                left: 96px;
+                right: 96px;
+                bottom: 72px;
+            }
+
+            .skills h2 {
+                margin: 0 0 20px;
+                font-size: 26px;
+                font-weight: 700;
+            }
+
+            .skills ul {
+                display: flex;
+                gap: 36px;
+                margin: 0;
+                padding: 0;
+                list-style: none;
+            }
+
+            .skills li {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                font-size: 22px;
+            }
+
+            .skills img {
+                width: 34px;
+                height: 34px;
+                border-radius: 8px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="card">
+            <div class="stars"></div>
+            <div class="hero">
+                <div class="text">
+                    <h1>Hi, I'm <span class="name">Ali Kehel</span></h1>
+                    <p>
+                        I'm a <span class="blue">Software Engineer</span>. I build web apps with TypeScript, and I love
+                        watching <img class="emoji" src="../public/other/hxh.jpg" alt="" /><span class="blue"
+                            >anime</span
+                        >
+                        and playing <img class="emoji" src="../public/other/r6s.jpg" alt="" /><span class="blue"
+                            >games</span
+                        >.
+                    </p>
+                </div>
+                <img class="photo" src="../public/me.webp" alt="" />
+            </div>
+            <div class="skills">
+                <h2>Skills</h2>
+                <ul>
+                    <li><img src="../public/skills/typescript.svg" alt="" />TypeScript</li>
+                    <li><img src="../public/skills/nodejs.svg" alt="" />Node.js</li>
+                    <li><img src="../public/skills/reactjs.svg" alt="" />React.js</li>
+                    <li><img src="../public/skills/express.svg" alt="" />Express</li>
+                    <li><img src="../public/skills/mysql.svg" alt="" />MySQL</li>
+                    <li><img src="../public/skills/cloudflare.svg" alt="" />Cloudflare</li>
+                </ul>
+            </div>
+        </div>
+    </body>
+</html>

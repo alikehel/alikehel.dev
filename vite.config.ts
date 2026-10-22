@@ -254,8 +254,20 @@ export default defineConfig({
         tailwindcss(),
         tanstackStart({
             // Every page becomes static HTML at build time. Pages are found by crawling links from "/".
-            prerender: { enabled: true, autoSubfolderIndex: false },
-            pages: [{ path: "/rss.xml", sitemap: { exclude: true } }],
+            prerender: {
+                enabled: true,
+                autoSubfolderIndex: false,
+                // Entry pages link back to a section of the home page (/#work and so on); those are not pages of their own
+                filter: (page) => !page.path.includes("#"),
+            },
+            pages: [
+                { path: "/rss.xml", sitemap: { exclude: true } },
+                // The sections of the home page that entry pages link back to: anchors, not pages
+                ...["work", "freelance", "education", "projects"].map((id) => ({
+                    path: `/#${id}`,
+                    sitemap: { exclude: true },
+                })),
+            ],
             sitemap: { enabled: true, host: siteUrl },
         }),
         react(),
