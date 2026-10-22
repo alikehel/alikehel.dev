@@ -5,8 +5,9 @@ import { Card } from "@/components/general/card";
 import { Skills } from "@/components/general/skills";
 import SparklesText from "@/components/ui/sparkles-text";
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
-import { resume } from "@/data/resume";
+import { type Entry, resume } from "@/data/resume";
 import { formatDate, posts } from "@/lib/content";
+import { type Section, dateLabel, entryPath, sections } from "@/lib/entries";
 import { pageHead } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
@@ -18,6 +19,29 @@ const socialUrl = (name: string) => resume.contact.social.find((item) => item.na
 const githubUrl = socialUrl("GitHub");
 const linkedinUrl = socialUrl("LinkedIn");
 const emailUrl = socialUrl("Email");
+
+// A job's or school's card shows the role under its name; a project's card shows only what it is
+const cardSubtitle = (entry: Entry) => [entry.subtitle, entry.type].filter(Boolean).join(" · ") || undefined;
+
+// One card per entry, each linking to the entry's own page
+function EntryCards({ section }: { section: Section }) {
+    return (
+        <div className="flex flex-col gap-2">
+            {sections[section].entries.map((entry) => (
+                <Card
+                    key={entry.slug}
+                    logoUrl={entry.logoUrl}
+                    title={entry.title}
+                    titleTransitionName={`entry-${entry.slug}`}
+                    subtitle={cardSubtitle(entry)}
+                    description={entry.summary}
+                    href={entryPath(section, entry)}
+                    date={dateLabel(entry)}
+                />
+            ))}
+        </div>
+    );
+}
 
 function Home() {
     return (
@@ -62,69 +86,24 @@ function Home() {
                 <Skills />
             </section>
             {/* Work Experience */}
-            <section className="flex flex-col gap-8">
-                <h2 className="text-2xl font-bold">Experience</h2>
-                <div className="flex flex-col gap-2">
-                    {resume.work.map((job) => (
-                        <Card
-                            key={job.title + job.company}
-                            logoUrl={job.logoUrl}
-                            title={job.title}
-                            description={job.company}
-                            href={job.href}
-                            date={`${job.start} - ${job.end}`}
-                        />
-                    ))}
-                </div>
+            <section id="work" className="flex scroll-mt-8 flex-col gap-8">
+                <h2 className="text-2xl font-bold">{sections.work.label}</h2>
+                <EntryCards section="work" />
             </section>
             {/* Freelance */}
-            <section className="flex flex-col gap-8">
-                <h2 className="text-2xl font-bold">Freelance</h2>
-                <p className="-mt-5 opacity-80">Part-time contract work alongside my full-time job.</p>
-                <div className="flex flex-col gap-2">
-                    {resume.freelance.map((client) => (
-                        <Card
-                            key={client.client}
-                            logoUrl={client.logoUrl}
-                            title={client.client}
-                            description={client.description}
-                            href={client.href}
-                            date={`${client.start} - ${client.end}`}
-                        />
-                    ))}
-                </div>
+            <section id="freelance" className="flex scroll-mt-8 flex-col gap-8">
+                <h2 className="text-2xl font-bold">{sections.freelance.label}</h2>
+                <EntryCards section="freelance" />
             </section>
             {/* Education */}
-            <section className="flex flex-col gap-8">
-                <h2 className="text-2xl font-bold">Education</h2>
-                <div className="flex flex-col gap-2">
-                    {resume.education.map((edu) => (
-                        <Card
-                            key={edu.University}
-                            logoUrl={edu.logoUrl}
-                            title={edu.University}
-                            description={edu.Faculty}
-                            href={edu.href}
-                            date={`${edu.start} - ${edu.end}`}
-                        />
-                    ))}
-                </div>
+            <section id="education" className="flex scroll-mt-8 flex-col gap-8">
+                <h2 className="text-2xl font-bold">{sections.education.label}</h2>
+                <EntryCards section="education" />
             </section>
             {/* Projects */}
-            <section className="flex flex-col gap-8">
-                <h2 className="text-2xl font-bold">Projects</h2>
-                <div className="flex flex-col gap-2">
-                    {resume.projects.map((project) => (
-                        <Card
-                            key={project.title}
-                            logoUrl={project.logoUrl}
-                            title={project.title}
-                            description={project.description}
-                            href={project.href}
-                            date={project.date}
-                        />
-                    ))}
-                </div>
+            <section id="projects" className="flex scroll-mt-8 flex-col gap-8">
+                <h2 className="text-2xl font-bold">{sections.projects.label}</h2>
+                <EntryCards section="projects" />
                 <a
                     href={githubUrl}
                     target="_blank"

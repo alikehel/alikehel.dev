@@ -4,10 +4,11 @@ import { ArrowLeft } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-// Shell for content pages (blog, uses): a link back to the parent page, the heading, then the content.
+// Shell for content pages (blog, uses, entries): a link back to the parent page, the heading, then the content.
 // `relative z-10` keeps the content above Jinx's monkey, which sits in the corner behind it.
 export function Page({
     back,
+    logoUrl,
     title,
     titleTransitionName,
     description,
@@ -16,6 +17,8 @@ export function Page({
 }: {
     /** The parent page, e.g. { href: "/blog", label: "Blog" } */
     back: { href: string; label: string };
+    /** Shown next to the heading, like on the cards */
+    logoUrl?: string;
     title: string;
     /** view-transition-name for the heading, so a title can fly in from a list (see `.shared-title`) */
     titleTransitionName?: string;
@@ -24,6 +27,15 @@ export function Page({
     meta?: ReactNode;
     children: ReactNode;
 }) {
+    const heading = (
+        <h1
+            className={cn("text-4xl font-bold", titleTransitionName && "shared-title w-fit")}
+            style={titleTransitionName ? { viewTransitionName: titleTransitionName } : undefined}
+        >
+            {title}
+        </h1>
+    );
+
     return (
         <main className="relative z-10 mx-auto flex min-h-screen max-w-3xl flex-col gap-10 px-6 pt-16 pb-32 md:pt-28 md:pb-44">
             <header className="flex flex-col gap-3">
@@ -37,12 +49,21 @@ export function Page({
                     />
                     <span className="sr-only">Back to</span> {back.label}
                 </a>
-                <h1
-                    className={cn("text-4xl font-bold", titleTransitionName && "shared-title w-fit")}
-                    style={titleTransitionName ? { viewTransitionName: titleTransitionName } : undefined}
-                >
-                    {title}
-                </h1>
+                {logoUrl ? (
+                    <div className="flex items-center gap-4">
+                        <img
+                            src={logoUrl}
+                            alt=""
+                            width={64}
+                            height={64}
+                            fetchPriority="high"
+                            className="h-16 w-16 shrink-0 rounded-xl bg-white"
+                        />
+                        {heading}
+                    </div>
+                ) : (
+                    heading
+                )}
                 {description && <p className="text-xl opacity-80">{description}</p>}
                 {meta}
             </header>

@@ -14,6 +14,10 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as RssDotxmlRouteImport } from './routes/rss[.]xml'
 import { Route as UsesRouteImport } from './routes/uses'
 import { Route as BlogSlugRouteImport } from './routes/blog_.$slug'
+import { Route as EducationSlugRouteImport } from './routes/education.$slug'
+import { Route as FreelanceSlugRouteImport } from './routes/freelance.$slug'
+import { Route as ProjectsSlugRouteImport } from './routes/projects.$slug'
+import { Route as WorkSlugRouteImport } from './routes/work.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +44,26 @@ const BlogSlugRoute = BlogSlugRouteImport.update({
   path: '/blog/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EducationSlugRoute = EducationSlugRouteImport.update({
+  id: '/education/$slug',
+  path: '/education/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FreelanceSlugRoute = FreelanceSlugRouteImport.update({
+  id: '/freelance/$slug',
+  path: '/freelance/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProjectsSlugRoute = ProjectsSlugRouteImport.update({
+  id: '/projects/$slug',
+  path: '/projects/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WorkSlugRoute = WorkSlugRouteImport.update({
+  id: '/work/$slug',
+  path: '/work/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +71,10 @@ export interface FileRoutesByFullPath {
   '/rss.xml': typeof RssDotxmlRoute
   '/uses': typeof UsesRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/education/$slug': typeof EducationSlugRoute
+  '/freelance/$slug': typeof FreelanceSlugRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
+  '/work/$slug': typeof WorkSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +82,10 @@ export interface FileRoutesByTo {
   '/rss.xml': typeof RssDotxmlRoute
   '/uses': typeof UsesRoute
   '/blog/$slug': typeof BlogSlugRoute
+  '/education/$slug': typeof EducationSlugRoute
+  '/freelance/$slug': typeof FreelanceSlugRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
+  '/work/$slug': typeof WorkSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,13 +94,45 @@ export interface FileRoutesById {
   '/rss.xml': typeof RssDotxmlRoute
   '/uses': typeof UsesRoute
   '/blog_/$slug': typeof BlogSlugRoute
+  '/education/$slug': typeof EducationSlugRoute
+  '/freelance/$slug': typeof FreelanceSlugRoute
+  '/projects/$slug': typeof ProjectsSlugRoute
+  '/work/$slug': typeof WorkSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/blog' | '/rss.xml' | '/uses' | '/blog/$slug'
+  fullPaths:
+    | '/'
+    | '/blog'
+    | '/rss.xml'
+    | '/uses'
+    | '/blog/$slug'
+    | '/education/$slug'
+    | '/freelance/$slug'
+    | '/projects/$slug'
+    | '/work/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/blog' | '/rss.xml' | '/uses' | '/blog/$slug'
-  id: '__root__' | '/' | '/blog' | '/rss.xml' | '/uses' | '/blog_/$slug'
+  to:
+    | '/'
+    | '/blog'
+    | '/rss.xml'
+    | '/uses'
+    | '/blog/$slug'
+    | '/education/$slug'
+    | '/freelance/$slug'
+    | '/projects/$slug'
+    | '/work/$slug'
+  id:
+    | '__root__'
+    | '/'
+    | '/blog'
+    | '/rss.xml'
+    | '/uses'
+    | '/blog_/$slug'
+    | '/education/$slug'
+    | '/freelance/$slug'
+    | '/projects/$slug'
+    | '/work/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -77,6 +141,10 @@ export interface RootRouteChildren {
   RssDotxmlRoute: typeof RssDotxmlRoute
   UsesRoute: typeof UsesRoute
   BlogSlugRoute: typeof BlogSlugRoute
+  EducationSlugRoute: typeof EducationSlugRoute
+  FreelanceSlugRoute: typeof FreelanceSlugRoute
+  ProjectsSlugRoute: typeof ProjectsSlugRoute
+  WorkSlugRoute: typeof WorkSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -116,6 +184,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof BlogSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/education/$slug': {
+      id: '/education/$slug'
+      path: '/education/$slug'
+      fullPath: '/education/$slug'
+      preLoaderRoute: typeof EducationSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/freelance/$slug': {
+      id: '/freelance/$slug'
+      path: '/freelance/$slug'
+      fullPath: '/freelance/$slug'
+      preLoaderRoute: typeof FreelanceSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/projects/$slug': {
+      id: '/projects/$slug'
+      path: '/projects/$slug'
+      fullPath: '/projects/$slug'
+      preLoaderRoute: typeof ProjectsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/work/$slug': {
+      id: '/work/$slug'
+      path: '/work/$slug'
+      fullPath: '/work/$slug'
+      preLoaderRoute: typeof WorkSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -125,6 +221,10 @@ const rootRouteChildren: RootRouteChildren = {
   RssDotxmlRoute: RssDotxmlRoute,
   UsesRoute: UsesRoute,
   BlogSlugRoute: BlogSlugRoute,
+  EducationSlugRoute: EducationSlugRoute,
+  FreelanceSlugRoute: FreelanceSlugRoute,
+  ProjectsSlugRoute: ProjectsSlugRoute,
+  WorkSlugRoute: WorkSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
