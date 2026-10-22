@@ -175,6 +175,10 @@ export const resume = {
                 "Built the employee portal backend (registration, dashboard, leaves, payslips, benefits, HR requests with generated PDFs), admin impersonation with correct actor attribution, and presigned AWS S3 uploads with size and type limits.",
                 "Shipped frontend features in the React 19 app (assets module, offboarding flow, auto-reload on deploys, accessibility fixes) and the marketing sites on Next.js 16.",
                 "Authored 52% of backend commits across seven contributors; delivered 160+ stories in 36 two-week sprints.",
+                "Moved refresh tokens into HTTP-only cookies with server-side revocation and added rate limiting across the API.",
+                "HR features beyond payroll: the benefits module, onboarding through Ovarc with contract templates, CSV bulk employee import, expenses, a recurring-events calendar, purchase orders and a HubSpot sync.",
+                "Production fixes: pooled SMTP connections after the mail provider throttled bulk sends, and a non-blocking PDF-renderer start-up that cut about 230 seconds from every end-to-end run.",
+                "Engineering practice: ESLint, Prettier and Husky across the repo, unit and integration suites split with coverage reported on every pull request, and ovarc.io moved onto Cloudflare Workers through OpenNext with locale routing.",
             ],
             technologies: [
                 "TypeScript",
@@ -218,6 +222,10 @@ export const resume = {
                 "Added rotating refresh tokens with reuse detection and cut the hot-path session lookup from 163 ms to 41 ms per request, verified by a test that asserts the MySQL query plan.",
                 "Built driver and vendor wallets with row locking, idempotency keys and one reconcile path after a double-spend; replaced three free-delivery mechanisms with one offers engine and redemption log.",
                 "Started the test suite from zero (680+ cases with a real-MySQL integration harness) and rewrote logging into structured events shipped to OpenSearch with retention policies and dashboards.",
+                "Fixed a SQL-injection hole on the order list and collapsed its 338 subqueries into one query, taking the endpoint from 269 ms to 44 ms.",
+                "A staging environment cloned from production, deploy-on-push with migrations run before each release, and the real-database integration harness, added after a 30-minute checkout outage.",
+                "Product work across the apps: AI extraction of restaurant menus from photos, notification campaigns, driver shifts, account statements, and rebuilt admin dashboards.",
+                "Work tracked as about 210 GitHub issues with one pull request each, released through staging-to-main pull requests.",
             ],
             technologies: [
                 "JavaScript",
@@ -247,6 +255,9 @@ export const resume = {
                 "Integrated a regional card-payment gateway: checkout with HMAC verification, tokenization, recurring charges, refunds, reconciliation, wallets with full transaction history, and teacher payouts; centralized money units across five apps after a 100× undercharge.",
                 "Built notifications on Durable Object WebSockets and Queues-backed Firebase push with a dead-letter queue, batching admin broadcasts to 5,000 recipients from 2,100 down to 77 subrequests to fit Workers limits.",
                 "Shipped Google and Apple OAuth sign-in through Better Auth with native ID-token flows, account deletion to App Store policy, a streaming AI tutor on Workers AI with rate limits, and PII-redacted structured logging.",
+                "Data on D1 through Drizzle (43 tables, 51 migrations), presigned R2 uploads, KV, cron triggers and six Workers deployed by Workers Builds; the RPC calls, the REST API and the Scalar docs all come from one oRPC router.",
+                "Right-to-left first: Tailwind CSS v4 and shadcn/ui primitives hardened for Arabic across the five TanStack Start apps, with Better Auth's Arabic translations.",
+                "Tracked down two platform-level surprises: Apple sign-in failing because Workers freeze Date.now at module start, so tokens carried an issue time of zero, and a D1 table rebuild that silently nulled foreign keys because PRAGMA foreign_keys only applies per connection.",
             ],
             technologies: [
                 "TypeScript",
@@ -275,6 +286,11 @@ export const resume = {
             summary: "Online learning platform in Egypt connecting Quran teachers with students.",
             highlights: [
                 "In a team of five, set up the pnpm and Turborepo monorepo with CI and Railway deploys, the Hono server structure, Better Auth with four roles, and the teacher profile and verification flow, writing most of the server code.",
+                "Five packages (server, admin, teacher, shared, shared-ui) with a GitHub Actions matrix that lints, type-checks and tests each one on every pull request, plus Dependabot and Husky hooks.",
+                "Hono server on Node with an app factory and shared middleware, request and response schemas in Zod, and an OpenAPI spec with Scalar docs generated from the routes.",
+                "Better Auth with a shared permissions package: resource-and-action statements for the four roles, enforced by a typed auth middleware on the server and reused by the dashboards.",
+                "Integration tests that run the API against PGlite, an in-memory Postgres, with the Drizzle migrations applied in the test setup.",
+                "Teacher onboarding: profile completion that promotes an account to the teacher role, and the verification flow for approved teachers.",
             ],
             technologies: [
                 "TypeScript",
@@ -301,6 +317,11 @@ export const resume = {
             summary: "Marketplace for services, products and offers in Saudi Arabia.",
             highlights: [
                 "Built the backend on Cloudflare Workers (Hono, D1, Drizzle, R2): 50 OpenAPI-documented endpoints, session auth with scrypt and OTP reset, a wallet with an atomically written transaction history, and a typed React and Mantine admin generated from the spec.",
+                "Hono on Cloudflare Workers with D1 through Drizzle (12 tables, 28 migrations): every route is defined with Zod schemas that also produce the OpenAPI spec and Scalar docs, with structured request logs through hono-pino.",
+                "Session auth with opaque tokens that expire after 30 days and renew when under 15 days remain, scrypt password hashing, and a six-digit OTP reset over email or phone.",
+                "A balance module with deposits, transfers and withdrawals, each written together with its transaction record in one atomic D1 batch, and a KYC flow with document uploads and review states.",
+                "A React and Mantine admin on TanStack Router, Query and Form, with its API client, types and query hooks generated from the OpenAPI spec; an Arabic and English landing page on Docusaurus.",
+                "Three Wrangler environments (dev, stage, prod) and a GitHub Actions pipeline that lints, type-checks and deploys on every push to main.",
             ],
             technologies: [
                 "TypeScript",
@@ -327,6 +348,11 @@ export const resume = {
             summary: "Courier and shipping platform for a logistics company in Iraq, with branches and drivers.",
             highlights: [
                 "Replaced a legacy PHP system with a new TypeScript, Express, Prisma and PostgreSQL backend (160+ routes, Redis, Swagger, Docker) for a React web client and an Expo mobile app, with JWT auth and roles.",
+                "Modelled the business in 46 Prisma models: companies with branches, warehouses and locations, clients and stores, 15 employee roles from company manager to delivery agent, and orders with timelines, receipts and products.",
+                "An order lifecycle with 14 statuses, from registration through the main and governorate warehouses to delivery, postponement, return or replacement, plus rule-based automatic status updates and hourly database backups on cron jobs.",
+                "Reports per company, client, branch, warehouse, delivery agent and governorate, with PDFs rendered through Puppeteer and Handlebars templates, and Excel exports of orders.",
+                "Real-time chat over Socket.IO, Firebase push notifications, S3 uploads, rate limiting, and Swagger docs generated from the routes.",
+                "Shipped as a Docker image built with Nixpacks on Railway, with Biome for linting and formatting.",
             ],
             technologies: ["TypeScript", "Node.js", "Express", "Prisma", "PostgreSQL", "Redis", "Swagger", "Docker"],
             links: [{ label: "Code on GitHub", href: "https://github.com/alikehel/delivery-company-api" }],
@@ -348,6 +374,7 @@ export const resume = {
                 "A space theme done entirely in CSS: star layers tied to the scroll position, shooting stars, and view transitions between pages.",
                 "Blog and uses pages written in MDX with build-time syntax highlighting, plus an RSS feed, a sitemap, Open Graph tags and JSON-LD.",
                 "Lighthouse 100 in all four categories on mobile and desktop, with a total blocking time of 0 ms.",
+                "Every job, client, school and project has its own page, generated from one data file, with breadcrumb structured data and view transitions between the cards and the pages.",
             ],
             technologies: [
                 "TypeScript",
@@ -372,6 +399,7 @@ export const resume = {
                 "Built with Docusaurus and MDX, with Algolia search and Giscus comments.",
                 "Maintainer since August 2023: I review and merge the changes of the other five contributors.",
                 "Moved the hosting from Netlify to Cloudflare Pages in 2026.",
+                "Content organized into community onboarding, course guides, core computer-science resources, subfields and roadmaps, each with its own sidebar.",
             ],
             technologies: ["TypeScript", "React.js", "Docusaurus", "MDX", "Algolia", "Cloudflare Pages"],
             links: [
@@ -392,6 +420,7 @@ export const resume = {
                 "Courses with exams, chat, leaderboards and profile pages; exam durations are enforced, leaderboard points update on submission, and students are notified when exams are graded.",
                 "AI features: essay answers graded against model answers, course reviews and comments screened for toxic language, and course content summarized.",
                 "Node.js, Express and TypeScript on PostgreSQL with Prisma; JWT auth, Zod validation, S3 uploads and Swagger docs.",
+                "Deployed the API on Railway with Swagger docs and a demo playlist on YouTube; a teammate built the React frontend against it.",
             ],
             technologies: [
                 "TypeScript",
@@ -425,6 +454,7 @@ export const resume = {
                 "The web client of a Discord clone built in the open by the Active Courses community, with seven contributors. I wrote most of the frontend.",
                 "A TypeScript monorepo (pnpm and Turborepo) with the types shared between the NestJS API and the React client, so a change on one side fails the build on the other.",
                 "React with TanStack Router, Query and Form, Tailwind CSS, Biome and conventional commits.",
+                "Docker Compose for the local Postgres, Husky and commitlint on every commit, and pnpm workspaces for the web and API packages.",
             ],
             technologies: [
                 "TypeScript",
@@ -452,6 +482,7 @@ export const resume = {
                 "GPA 3.5/4.0 with honors.",
                 "Web Committee Vice Head, IEEE Benha University Student Branch (2021–2022).",
                 "Graduation project: Cloud Education, an education platform API with AI-graded exams.",
+                "Coursework: data structures and algorithms, object-oriented programming, software engineering, operating systems, databases, networking and web development.",
             ],
             technologies: [],
             links: [
@@ -468,7 +499,10 @@ export const resume = {
             end: "2018",
             location: "6th of October, Egypt",
             summary: "Egypt's public high school for science, technology, engineering and mathematics.",
-            highlights: [],
+            highlights: [
+                "One of Egypt's selective public STEM schools, with admission by national exam; a boarding school in 6th of October City.",
+                "Project-based curriculum: a capstone project every semester, built around one of Egypt's grand challenges.",
+            ],
             technologies: [],
             links: [{ label: "stemegypt.net", href: "https://www.stemegypt.net/" }],
         },
@@ -482,8 +516,8 @@ export const resume = {
             location: "Online",
             summary: "Professional and Advanced Web Development Nanodegree programs.",
             highlights: [
-                "Professional Web Development Nanodegree, February 2022.",
-                "Advanced Web Development Nanodegree, November 2022.",
+                "Professional Web Development Nanodegree, February 2022, through the egFWD initiative of Egypt's Ministry of Communications: HTML, CSS and JavaScript fundamentals, with a landing page and a weather journal app on Node and Express as projects.",
+                "Advanced Web Development Nanodegree, November 2022: Node.js and Express APIs in TypeScript with PostgreSQL and tests, with an image-processing API, a storefront backend and the Udagram deployment to AWS as projects.",
             ],
             technologies: [],
             links: [
