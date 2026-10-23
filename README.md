@@ -31,4 +31,4 @@ Pushing to `main` deploys through Cloudflare Workers Builds.
 - Build command: `pnpm build`
 - Deploy command: `pnpm exec wrangler deploy`
 
-Every page is prerendered at build time, and production loads no JavaScript bundle. The only JavaScript that runs in the browser is a small inline script that TanStack Router adds to each page.
+Every page is prerendered at build time, and production loads no JavaScript bundle. The only scripts on a page are a small inline one that TanStack Router adds and the Cloudflare Web Analytics beacon, which Cloudflare injects at the edge.
