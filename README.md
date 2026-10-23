@@ -11,7 +11,7 @@ pnpm dev
 
 The dev server runs at https://alikehel.localhost through [portless](https://github.com/vercel-labs/portless). Run `PORTLESS=0 pnpm dev` to skip it.
 
-Home page content lives in `src/data/resume.tsx`: each job, client, school and project there gets a card on the home page and its own page (`/work/ovarc`, `/freelance/talabatk`, `/education/udacity`, `/projects/disworse` and so on), with the same text as the resume. Blog posts are MDX files in `content/blog/` (the file name is the URL slug) with `title`, `description` and `date` in the frontmatter; add `draft: true` to keep a post out of production. The `/uses` page is `content/uses.mdx`.
+Home page content lives in `src/data/resume.tsx`: each job, client, school and project there gets a card on the home page and its own page (`/work/ovarc`, `/freelance/talabatk`, `/education/udacity`, `/projects/disworse` and so on). The pages carry more detail than the resume, which keeps only the main points. Blog posts are MDX files in `content/blog/` (the file name is the URL slug) with `title`, `description` and `date` in the frontmatter; add `draft: true` to keep a post out of production. The `/uses` page is `content/uses.mdx`.
 
 The Open Graph image, `public/og.jpg`, is rendered from `scripts/og.html` by `scripts/og.sh` (needs Google Chrome). Run it again after changing the hero text or the photo.
 
@@ -31,4 +31,4 @@ Pushing to `main` deploys through Cloudflare Workers Builds.
 - Build command: `pnpm build`
 - Deploy command: `pnpm exec wrangler deploy`
 
-The home page is prerendered at build time and ships no JavaScript.
+Every page is prerendered at build time, and production loads no JavaScript bundle. The only JavaScript that runs in the browser is a small inline script that TanStack Router adds to each page.

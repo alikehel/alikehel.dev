@@ -81,7 +81,7 @@ export const Route = createRootRoute({
     notFoundComponent: NotFound,
 });
 
-// <HeadContent /> without the JS module preloads, since production ships no client JS
+// <HeadContent /> without the JS module preloads, since production loads no JS bundle
 function StaticHeadContent() {
     const tags = useTags().filter((tag) => !(tag.tag === "link" && tag.attrs?.rel === "modulepreload"));
     return tags.map((tag) => <Asset {...tag} key={`tsr-meta-${JSON.stringify(tag)}`} />);
@@ -108,7 +108,7 @@ function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
                     <span className="monkey-bubble">Get excited!</span>
                     <img src="/jinx-monkey.webp" alt="" width={100} height={78} loading="lazy" decoding="async" />
                 </div>
-                {/* The page is static HTML and CSS. Client JS only loads in dev, for hot reload. */}
+                {/* The page is static HTML and CSS. The JS bundle only loads in dev, for hot reload. */}
                 {import.meta.env.DEV && <Scripts />}
             </body>
         </html>
