@@ -13,7 +13,7 @@ This site used to be a Next.js app, deployed through OpenNext on Cloudflare Work
 - **Hosting:** the same Cloudflare Worker, deployed by Workers Builds on every push to `main`.
 - **Animations:** the typing effect, the sparkles and the dock's magnify effect are plain CSS now. They used to need Framer Motion.
 
-## No JavaScript in production
+## No JavaScript bundle in production
 
 TanStack Start can prerender routes at build time. With that on, the build writes static HTML for every page, and the CSS is inlined into it. The home page is one response of about 25 KB compressed.
 
@@ -25,12 +25,12 @@ tanstackStart({
 
 The dev server still loads React for hot reload, so I only leave the `<Scripts />` tag out of the production build.
 
-## Space, still without JavaScript
+## Space, done in CSS
 
 Later I gave the site a space theme, and every effect in it is CSS:
 
 - **Parallax stars:** the star layers are tied to the scroll position with `animation-timeline: scroll()`, so nearer stars move more than far ones as you scroll.
-- **Shooting stars:** keyframe animations that only move `transform` and `opacity`, which the browser can run off the main thread.
+- **Shooting stars:** keyframe animations that only change `transform` and `opacity`, which the browser can run off the main thread.
 - **Page transitions:** one rule makes pages glide into each other instead of flashing. A post's title has the same `view-transition-name` in the list and on the post page, so it flies into place.
 
 ```css

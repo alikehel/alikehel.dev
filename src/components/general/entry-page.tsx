@@ -6,7 +6,6 @@ import { Page } from "@/components/general/page";
 import { type Section, dateLabel, getEntry, sections, technologyLogo } from "@/lib/entries";
 
 // The page of one job, client, project or school: what it is, what I did there, the stack and the links.
-// The text is the same as on the resume.
 export function EntryPage({ section, slug }: { section: Section; slug: string }) {
     const entry = getEntry(section, slug);
     if (!entry) return null;

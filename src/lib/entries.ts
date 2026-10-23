@@ -20,9 +20,9 @@ export function entryPath(section: Section, entry: Entry) {
     return `${sections[section].path}/${entry.slug}`;
 }
 
-/** "Jan 2025 - Present", or just the start when there is no end */
+/** "Jan 2025 – Present", or just the start when there is no end */
 export function dateLabel(entry: Entry) {
-    return entry.end ? `${entry.start} - ${entry.end}` : entry.start;
+    return entry.end ? `${entry.start} – ${entry.end}` : entry.start;
 }
 
 /** Head tags for an entry's page: title, description, canonical URL and breadcrumbs */
@@ -36,7 +36,6 @@ export function entryHead(section: Section, slug: string) {
         description: entry.summary,
         breadcrumbs: [
             { label: "Home", path: "/" },
-            { label: sections[section].label, path: `/#${section}` },
             { label: entry.title, path },
         ],
     });
@@ -49,11 +48,11 @@ const skillLogos = new Map<string, string>([
     ["DigitalOcean", "/skills/digitalocean.svg"],
     ["Docusaurus", "/skills/docusaurus.svg"],
     ["Firebase", "/skills/firebase.svg"],
+    ["GraphQL", "/skills/graphql.svg"],
     ["Mantine", "/skills/mantine.svg"],
     ["MDX", "/skills/mdx.svg"],
     ["OpenSearch", "/skills/opensearch.svg"],
     ["Railway", "/skills/railway.svg"],
-    ["Redis", "/skills/redis.svg"],
     ["Swagger", "/skills/swagger.svg"],
     ["Turborepo", "/skills/turborepo.svg"],
     ["Vite+", "/skills/vite.svg"],
