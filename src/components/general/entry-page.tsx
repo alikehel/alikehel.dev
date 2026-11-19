@@ -102,7 +102,7 @@ export function EntryPage({ section, slug }: { section: Section; slug: string })
             {entry.links.length > 0 && (
                 <section className="flex flex-col gap-4">
                     <h2 className="text-2xl font-bold">Links</h2>
-                    <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                    <ul className="flex flex-col gap-3">
                         {entry.links.map((link) => {
                             // Links to other sites open in a new tab and get a diagonal arrow; links within the site get a straight one
                             const external = /^https?:/.test(link.href);
